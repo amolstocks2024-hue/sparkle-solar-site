@@ -1,0 +1,13 @@
+{
+  "name": "Sparkle Solar",
+  "short_name": "SparkleSolar",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#fffdf3",
+  "theme_color": "#ffcc00",
+  "description": "Power your future with solar energy. Book a free consultation and save with subsidy.",
+  "icons": [
+    { "src": "images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "images/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
