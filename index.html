@@ -12,7 +12,7 @@
       --primary:#ffcc00;
       --accent:#f5b301;
       --text-dark:#2f2f2f;
-      --text-darker:#2a2100;    /* deep warm gray (not black) */
+      --text-darker:#2a2100;
       --bg:#fffdf3;
       --card:#ffffff;
       --soft:#fff6c7;
@@ -48,24 +48,20 @@
     }
     .nav a:hover{transform:translateY(-2px)}
 
-    /* HERO (top-aligned text, no black) */
+    /* HERO — simple image (Solar Logo.jpg), top-aligned text, no overlays */
     .hero{
-      position:relative;min-height:76vh;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;
-      background:radial-gradient(1200px 600px at 10% 10%, #fff7cc 0%, #fff1a8 40%, #ffe57a 70%, #ffdf66 100%);
+      position:relative;min-height:72vh;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;
       border-bottom-left-radius:28px;border-bottom-right-radius:28px;
-    }
-    .hero img{
-      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out;
-      filter:saturate(1.05) contrast(1.02) brightness(1.02);
-      background:transparent;
-    }
-    .hero img.active{opacity:.55;}
-    .hero::after{
-      content:"";position:absolute;inset:0;
-      background:linear-gradient(180deg,rgba(255,230,102,0.55),rgba(255,243,179,0.75));
+      background-image:url("images/Solar Logo.jpg");
+      background-size:cover;
+      background-position:center top;
+      background-repeat:no-repeat;
     }
     .hero-content{
-      position:relative;z-index:2;max-width:980px;margin:0 auto;padding:26px 20px 20px;text-align:center;
+      position:relative;z-index:1;max-width:980px;margin:0 auto;
+      padding:28px 20px 18px;
+      text-align:center;
+      backdrop-filter:saturate(1.1);
     }
     .hero-content h1{
       font-size:clamp(2rem,4.6vw,3.4rem);color:#6a5500;font-weight:800;margin-bottom:8px;text-shadow:0 1px 0 rgba(255,255,255,.9);
@@ -73,14 +69,13 @@
     .hero-content p{font-size:1.1rem;color:#5b4b00}
 
     .cta-row{margin-top:16px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-
     .button{
       display:inline-block;padding:12px 20px;border-radius:10px;font-weight:800;text-decoration:none;
       box-shadow:var(--shadow);border:0;transition:transform .2s ease, box-shadow .2s ease;
       background:linear-gradient(90deg,#ffd54d,#ffcd1a);
       color:#402f00;
     }
-    /* FREE QUOTE button in WHITE + correct link */
+    /* FREE QUOTE button in WHITE + relative link to fix 404 */
     .button.white{
       background:#ffffff;border:2px solid #ffd34a;color:#6a5500;
     }
@@ -100,38 +95,26 @@
     ul.clean li{padding:6px 0 6px 28px;position:relative}
     ul.clean li::before{content:"☀";position:absolute;left:0;top:4px;color:#e0a800}
 
-    /* SUBSIDY — center stage + animation */
-    .subsidy-wrap{
-      display:flex;justify-content:center;align-items:center;margin-top:16px;
-    }
+    /* SUBSIDY — center stage + FASTER shimmer */
+    .subsidy-wrap{display:flex;justify-content:center;align-items:center;margin-top:16px}
     .subsidy{
       text-align:center;background:linear-gradient(180deg,#fff7c9,#ffe987);
       border:3px solid #ffd34a;border-radius:18px;box-shadow:0 12px 30px rgba(255,204,0,.35);
       padding:22px 18px;max-width:900px;width:100%;
       position:relative;overflow:hidden;
     }
-    .subsidy h3{
-      color:#6a5500;font-size:1.35rem;margin-bottom:6px;
-    }
-    .subsidy .prices{
-      font-size:clamp(1.25rem,2.8vw,1.6rem);font-weight:800;color:#573f00;letter-spacing:.2px;
-    }
-    /* gentle shimmer highlight */
+    .subsidy h3{color:#6a5500;font-size:1.35rem;margin-bottom:6px}
+    .subsidy .prices{font-size:clamp(1.25rem,2.8vw,1.6rem);font-weight:800;color:#573f00;letter-spacing:.2px}
     .subsidy::after{
       content:"";position:absolute;top:0;left:-120px;width:120px;height:100%;
       background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.55), rgba(255,255,255,0));
       transform:skewX(-20deg);
-      animation:shine 3.6s linear infinite;
+      /* faster shimmer (was 3.6s) */
+      animation:shine 1.8s linear infinite;
     }
     @keyframes shine{0%{left:-120px}100%{left:100%}}
-
-    /* pulsing numbers to catch the eye */
     .pulse{animation:pulse 1.2s ease-in-out infinite}
-    @keyframes pulse{
-      0%{transform:scale(1)}
-      50%{transform:scale(1.06)}
-      100%{transform:scale(1)}
-    }
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
 
     .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:12px}
     .stat{background:#fff6c7;border-radius:12px;padding:16px;text-align:center;font-weight:700;color:#5b4b00;box-shadow:var(--shadow)}
@@ -142,8 +125,16 @@
     .card h3{font-size:1.1rem;margin-bottom:6px;color:#6a5500}
     .card p{font-size:.97rem}
 
-    .brand-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:12px}
-    .brand{background:#fff4cc;border-radius:10px;padding:10px;text-align:center;font-weight:700;color:#5b4b00;border:1px dashed #ffdb66}
+    /* Brand Associations: logos image, padded & contained */
+    .logos-wrap{
+      display:flex;justify-content:center;align-items:center;
+      background:#fffef6;border:2px solid #ffe27a;border-radius:14px;box-shadow:var(--shadow);
+      padding:16px;
+    }
+    .logos-wrap img{
+      width:100%;max-width:980px;height:auto;display:block;margin:0 auto;
+      object-fit:contain;border-radius:10px;
+    }
 
     /* Gallery + Lightbox (no black) */
     .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
@@ -158,6 +149,48 @@
     .lightbox img{max-width:92%;max-height:86%;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,0.18);animation:fadeIn .25s ease}
     @keyframes fadeIn{from{transform:scale(.98);opacity:0}to{transform:scale(1);opacity:1)}
 
+    /* CONTACT SPOTLIGHT — central aligned with attention-grabbing (but classy) animations */
+    .contact-spotlight{
+      text-align:center;background:linear-gradient(180deg,#fffaf0,#fff2c9);
+      border:3px solid #ffd34a;border-radius:18px;box-shadow:0 12px 30px rgba(255,204,0,.28);
+      padding:26px 18px;max-width:980px;margin:24px auto;
+      position:relative;overflow:hidden;
+    }
+    /* sweeping highlight behind the heading */
+    .contact-spotlight::before{
+      content:"";position:absolute;top:-40%;left:-10%;width:60%;height:180%;
+      background:radial-gradient(closest-side, rgba(255,255,255,.65), rgba(255,255,255,0));
+      transform:rotate(18deg);
+      animation:halo 2.6s ease-in-out infinite alternate;
+    }
+    @keyframes halo{0%{transform:translateX(0) rotate(18deg)}100%{transform:translateX(25%) rotate(18deg)}}
+
+    .contact-spotlight h2{
+      color:#6a5500;margin-bottom:6px;font-size:1.5rem;position:relative;z-index:1;
+      text-shadow:0 1px 0 rgba(255,255,255,.9);
+    }
+    .contact-spotlight .name{
+      font-weight:800;color:#5b4b00;margin-bottom:8px;position:relative;z-index:1;
+    }
+    .contact-spotlight .line{
+      display:inline-block;font-weight:800;color:#4b3a00;position:relative;z-index:1;
+    }
+    /* animated underline sweep under phone+email */
+    .contact-spotlight .line::after{
+      content:"";position:absolute;left:0;right:0;bottom:-4px;height:6px;border-radius:6px;
+      background:linear-gradient(90deg,#ffe27a,#ffd34a,#ffcf33,#ffe27a);
+      background-size:200% 100%;
+      animation:underline 1.8s linear infinite;
+    }
+    @keyframes underline{0%{background-position:0% 0}100%{background-position:200% 0}}
+    /* soft glow pulsing to catch the eye */
+    .glow{animation:glow 1.6s ease-in-out infinite}
+    @keyframes glow{
+      0%{text-shadow:0 0 0 rgba(255,204,0,.0)}
+      50%{text-shadow:0 0 16px rgba(255,204,0,.55)}
+      100%{text-shadow:0 0 0 rgba(255,204,0,.0)}
+    }
+
     .contact{text-align:center;background:linear-gradient(90deg,#fff7c9,#ffe987);padding:34px 18px;border-radius:var(--radius);border:2px solid #ffe27a;box-shadow:var(--shadow)}
     .contact a{color:#6a5500;text-decoration:none;font-weight:700}
     .map-container{margin-top:16px;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
@@ -170,6 +203,7 @@
     @media (max-width:768px){
       .section{padding:18px}
       .gallery img{height:160px}
+      .hero{min-height:60vh}
     }
   </style>
 </head>
@@ -186,23 +220,14 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <!-- HERO with Solar Logo.jpg + top-aligned text -->
+  <!-- HERO -->
   <section class="hero" aria-label="Hero">
-    <img src="images/Solar Logo.jpg" class="active" alt="Sparkle Solar logo and motif">
-    <img src="images/WhatsApp Image 2025-10-24 at 1.08.16 PM.jpeg" alt="Sparkle Solar installation">
-    <img src="images/WhatsApp Image 2025-10-24 at 1.08.19 PM.jpeg" alt="">
-    <img src="images/WhatsApp Image 2025-10-24 at 1.08.21 PM.jpeg" alt="">
-    <img src="images/WhatsApp Image 2025-10-24 at 1.08.22 PM.jpeg" alt="">
-    <img src="images/WhatsApp Image 2025-10-24 at 1.08.23 PM.jpeg" alt="">
-    <img src="images/WhatsApp Image 2025-10-24 at 1.08.24 PM.jpeg" alt="">
-    <img src="images/WhatsApp Image 2025-10-24 at 1.08.31 PM.jpeg" alt="">
-
     <div class="hero-content">
       <h1>Harness the Sun. Cut Bills. Power Your Future.</h1>
       <p>On-Grid • Off-Grid • Hybrid | Residential • Commercial • Industrial</p>
       <div class="cta-row">
-        <!-- WHITE background + link path update -->
-        <a class="button white" href="sparkle-solar-site/quote.html">⚡ Get a FREE Solar Quote</a>
+        <!-- fixed link to quote.html -->
+        <a class="button white" href="quote.html">⚡ Get a FREE Solar Quote</a>
         <a class="button" href="https://wa.me/918888856841">💬 Chat on WhatsApp</a>
       </div>
     </div>
@@ -210,7 +235,7 @@
 
   <main class="wrap">
 
-    <!-- SUBSIDY — Center of attraction with animation -->
+    <!-- SUBSIDY — faster shimmer -->
     <section class="section" aria-labelledby="subsidy-title">
       <div class="subsidy-wrap">
         <div class="subsidy">
@@ -253,14 +278,11 @@
       </div>
     </section>
 
-    <!-- BRANDS -->
+    <!-- BRAND ASSOCIATIONS — logos image -->
     <section id="brands" class="section" aria-labelledby="brands-title">
       <h2 id="brands-title">Brand Associations</h2>
-      <div class="brand-grid">
-        <div class="brand">Panasonic</div><div class="brand">Growatt</div><div class="brand">Adani</div>
-        <div class="brand">Trina Solar</div><div class="brand">Longi</div><div class="brand">Vikram Solar</div>
-        <div class="brand">Peimar</div><div class="brand">KSolare</div><div class="brand">ABB (FIMAR)</div>
-        <div class="brand">SolarEdge</div><div class="brand">Havells</div><div class="brand">DEYE / EVVO</div>
+      <div class="logos-wrap">
+        <img src="images/Logos.jpeg" alt="Partner brand logos">
       </div>
     </section>
 
@@ -268,6 +290,18 @@
     <section id="projects" class="section" aria-labelledby="projects-title">
       <h2 id="projects-title">Our Recent Projects 📸</h2>
       <div class="gallery" id="gallery"></div>
+    </section>
+
+    <!-- CONTACT SPOTLIGHT (central, animated) -->
+    <section class="contact-spotlight" aria-labelledby="contact-spotlight-title">
+      <h2 id="contact-spotlight-title" class="glow">Contact Us for a FREE Solar Quote</h2>
+      <div class="name">Someshwar Badlu</div>
+      <div class="line glow">📱 +91 88888 56841 &nbsp; | &nbsp; 📧 sparklesolarr@gmail.com</div>
+      <div class="cta-row" style="justify-content:center;margin-top:14px">
+        <!-- fixed link to quote.html -->
+        <a class="button white" href="quote.html">⚡ Get a FREE Solar Quote</a>
+        <a class="button" href="https://wa.me/918888856841">💬 WhatsApp</a>
+      </div>
     </section>
 
     <!-- REACH US -->
@@ -280,13 +314,14 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- CONTACT (kept for footer CTA as well) -->
     <section id="contact" class="contact" aria-labelledby="contact-title">
       <h2 id="contact-title" style="margin-bottom:8px">📞 Contact Us for a FREE Solar Quote</h2>
       <p><strong>Someshwar Badlu</strong></p>
       <p>📱 <a href="tel:+918888856841">+91 88888 56841</a> &nbsp;|&nbsp; 📧 <a href="mailto:sparklesolarr@gmail.com">sparklesolarr@gmail.com</a></p>
       <div class="cta-row" style="justify-content:center;margin-top:10px">
-        <a class="button white" href="sparkle-solar-site/quote.html">⚡ Get a FREE Solar Quote</a>
+        <!-- fixed link to quote.html -->
+        <a class="button white" href="quote.html">⚡ Get a FREE Solar Quote</a>
         <a class="button" href="https://wa.me/918888856841">💬 WhatsApp</a>
       </div>
     </section>
@@ -303,21 +338,12 @@
   </div>
 
   <script>
-    // HERO SLIDESHOW (fade)
-    const slides = document.querySelectorAll(".hero img");
-    let index = 0;
-    setInterval(() => {
-      slides[index].classList.remove("active");
-      index = (index + 1) % slides.length;
-      slides[index].classList.add("active");
-    }, 3000);
-
-    // SUBSIDY count-up animation when visible
+    // SUBSIDY count-up animation (runs once when visible)
     const counters = document.querySelectorAll(".count");
     const animateCounters = () => {
       counters.forEach(el => {
         const target = +el.getAttribute("data-target");
-        const duration = 1000; // 1s
+        const duration = 1000;
         const start = 0;
         const startTime = performance.now();
         const step = (now) => {
