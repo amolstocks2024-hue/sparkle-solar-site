@@ -32,68 +32,103 @@
     .nav a{text-decoration:none;color:var(--text-darker);background:#fff4cc;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.95rem;box-shadow:var(--shadow);transition:transform .2s ease}
     .nav a:hover{transform:translateY(-2px)}
 
-    /* ===== HERO — 70:30 split (bigger image, tight spacing) ===== */
+    /* ===== HERO — 70:30 split (bigger image, centered text, tight spacing) ===== */
     .hero-split{
       display:grid;
-      grid-template-columns: 7fr 3fr;     /* 70:30 */
-      gap:12px;                           /* tighter gap */
+      grid-template-columns: 7fr 3fr;       /* 70:30 */
+      gap:14px;                              /* tight but breathable */
       min-height:78vh;
       border-bottom-left-radius:28px;border-bottom-right-radius:28px;
       background:var(--bg);
-      padding:14px;                        /* slightly reduced padding */
+      padding:14px;
     }
 
-    /* Left: full image (contain) with headline laid INSIDE the image area */
+    /* Left image panel */
     .hero-left{ position:relative; overflow:hidden; border-radius:18px; background:#fffef6 }
     .hero-img{
       position:absolute; inset:0; width:100%; height:100%;
-      object-fit:contain; object-position:center;
-      pointer-events:none; user-select:none;
+      object-fit:contain; object-position:center; pointer-events:none; user-select:none;
+      animation:heroImgIn .8s ease-out both;
     }
-    .text-panel{
-      position:absolute;                   /* place text on top of the image */
-      left:4%; right:26%; top:6%;          /* keep it comfortably inside the visual subject */
-      max-width:820px;                     /* allow larger line lengths */
-    }
-    .text-panel h1{
-      font-size:clamp(2.1rem,4.8vw,3.6rem); /* slightly larger so it “sits” in the image */
-      color:#6a5500; font-weight:800; line-height:1.12; margin-bottom:10px;
-      text-shadow:0 1px 0 rgba(255,255,255,.9);
-    }
-    .text-panel p{font-size:1.08rem;color:#5b4b00}
-
-    /* subtle chip behind text for readability on busy zones (not a tint over image) */
-    .text-chip{
-      display:inline-block;padding:6px 10px;border-radius:10px;
-      background:rgba(255,255,255,.75);   /* just under the letters, not over the image */
+    @keyframes heroImgIn{
+      from{transform:scale(1.02); opacity:0}
+      to{transform:scale(1); opacity:1}
     }
 
-    .cta-row{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
-    .button{display:inline-block;padding:12px 20px;border-radius:10px;font-weight:800;text-decoration:none;box-shadow:var(--shadow);border:0;transition:transform .2s ease,box-shadow .2s ease;background:linear-gradient(90deg,#ffd54d,#ffcd1a);color:#402f00}
+    /* Centered text over the image */
+    .hero-text-block{
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      text-align:center; max-width:780px; padding:10px;
+    }
+    .hero-text-block h1{
+      font-size:clamp(2.1rem,4.8vw,3.6rem);
+      font-weight:800; color:#4a3b00; line-height:1.15;
+      text-shadow:0 2px 4px rgba(255,255,255,0.85);
+      animation:fadeUp .6s ease-out .1s both;
+    }
+    .hero-text-block p{
+      margin-top:10px; font-size:1.12rem; color:#4a3b00;
+      text-shadow:0 1px 3px rgba(255,255,255,0.85);
+      animation:fadeUp .6s ease-out .25s both;
+    }
+    .hero-text-block .cta-row{
+      margin-top:18px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap;
+      animation:fadeIn .5s ease-out .45s both;
+    }
+
+    @keyframes fadeUp{
+      from{transform:translate(-50%,-52%); opacity:0}
+      to{transform:translate(-50%,-50%); opacity:1}
+    }
+    @keyframes fadeIn{
+      from{opacity:0; transform:translateY(4px)}
+      to{opacity:1; transform:translateY(0)}
+    }
+
+    .button{
+      display:inline-block;padding:12px 20px;border-radius:10px;font-weight:800;text-decoration:none;
+      box-shadow:var(--shadow);border:0;transition:transform .2s ease,box-shadow .2s ease;
+      background:linear-gradient(90deg,#ffd54d,#ffcd1a);color:#402f00
+    }
     .button.white{background:#ffffff;border:2px solid #ffd34a;color:#6a5500}
     .button:hover{transform:translateY(-2px)}
 
+    /* Right form column (slightly narrower card for balance) */
     .hero-right{display:flex;align-items:center;justify-content:center}
-
-    /* Form card (used here; quote.html has the bigger twin) */
-    .quote-card{width:100%;max-width:480px;background:#fff;border-radius:22px;padding:20px;box-shadow:0 12px 40px rgba(0,0,0,.10);border:2px solid #eef0f4}
+    .quote-card{
+      width:100%; max-width:480px; background:#fff; border-radius:22px; padding:20px;
+      box-shadow:0 12px 40px rgba(0,0,0,.10); border:2px solid #eef0f4;
+      animation:formIn .5s ease-out .2s both;
+    }
+    @keyframes formIn{
+      from{opacity:0; transform:translateY(6px)}
+      to{opacity:1; transform:translateY(0)}
+    }
     .quote-card h2{font-size:1.45rem;line-height:1.25;color:#1e2330}
     .quote-card .muted{color:#6b7280;margin-bottom:12px}
     .quote-card label{display:block;font-weight:700;color:#1e2330;margin:10px 0 6px}
     .req{color:#e11d48;font-weight:800}
-    .quote-card input[type="text"], .quote-card input[type="tel"]{width:100%;border:1.6px solid #e5e7eb;outline:0;border-radius:10px;padding:11px 12px;font-size:1rem;transition:border-color .2s ease,box-shadow .2s ease}
+    .quote-card input[type="text"], .quote-card input[type="tel"]{
+      width:100%;border:1.6px solid #e5e7eb;outline:0;border-radius:10px;padding:11px 12px;font-size:1rem;
+      transition:border-color .2s ease,box-shadow .2s ease
+    }
     .quote-card input:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.15)}
     .bill-row{margin-top:6px}
     .bill-row label{display:flex;align-items:center;gap:8px}
     .info{display:inline-flex;align-items:center}
     .chip-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
     .chip-group input{display:none}
-    .chip{display:inline-block;padding:9px 12px;border-radius:12px;cursor:pointer;border:1.6px solid #e5e7eb;background:#fff;color:#1f2937;font-weight:700;font-size:.93rem;transition:all .15s ease}
+    .chip{
+      display:inline-block;padding:9px 12px;border-radius:12px;cursor:pointer;border:1.6px solid #e5e7eb;background:#fff;color:#1f2937;font-weight:700;font-size:.93rem;
+      transition:all .15s ease
+    }
     .chip-group input:checked + .chip, .chip:hover{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.12)}
     .agree{display:flex;align-items:flex-start;gap:10px;margin-top:12px;color:#6b7280}
     .agree input{margin-top:3px}
     .agree a{color:#1e40af;text-decoration:underline}
-    .cta-primary{margin-top:12px;width:100%;padding:13px 16px;border-radius:16px;border:0;cursor:pointer;background:#0b122b;color:#fff;font-weight:800;font-size:1.03rem;transition:transform .15s ease,box-shadow .15s ease}
+    .cta-primary{
+      margin-top:12px;width:100%;padding:13px 16px;border-radius:16px;border:0;cursor:pointer;background:#0b122b;color:#fff;font-weight:800;font-size:1.03rem;transition:transform .15s ease,box-shadow .15s ease
+    }
     .cta-primary:hover{transform:translateY(-1px);box-shadow:0 10px 18px rgba(11,18,43,.25)}
 
     .wrap{max-width:1150px;margin:28px auto;padding:0 18px}
@@ -104,12 +139,20 @@
     ul.clean li{padding:6px 0 6px 28px;position:relative}
     ul.clean li::before{content:"☀";position:absolute;left:0;top:4px;color:#e0a800}
 
-    /* Subsidy — centered + faster shimmer + number pulse */
+    /* Subsidy — centered + shimmer + number pulse */
     .subsidy-wrap{display:flex;justify-content:center;align-items:center;margin-top:16px}
-    .subsidy{text-align:center;background:linear-gradient(180deg,#fff7c9,#ffe987);border:3px solid #ffd34a;border-radius:18px;box-shadow:0 12px 30px rgba(255,204,0,.35);padding:22px 18px;max-width:900px;width:100%;position:relative;overflow:hidden}
+    .subsidy{
+      text-align:center;background:linear-gradient(180deg,#fff7c9,#ffe987);
+      border:3px solid #ffd34a;border-radius:18px;box-shadow:0 12px 30px rgba(255,204,0,.35);
+      padding:22px 18px;max-width:900px;width:100%;position:relative;overflow:hidden
+    }
     .subsidy h3{color:#6a5500;font-size:1.35rem;margin-bottom:6px}
     .subsidy .prices{font-size:clamp(1.25rem,2.8vw,1.6rem);font-weight:800;color:#573f00}
-    .subsidy::after{content:"";position:absolute;top:0;left:-120px;width:120px;height:100%;background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.55), rgba(255,255,255,0));transform:skewX(-20deg);animation:shine 1.8s linear infinite}
+    .subsidy::after{
+      content:"";position:absolute;top:0;left:-120px;width:120px;height:100%;
+      background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.55), rgba(255,255,255,0));
+      transform:skewX(-20deg);animation:shine 1.8s linear infinite
+    }
     @keyframes shine{0%{left:-120px}100%{left:100%}}
     .pulse{animation:pulse 1.2s ease-in-out infinite}
     @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
@@ -137,10 +180,10 @@
     .whatsapp-float{position:fixed;bottom:18px;right:18px;background-color:#25d366;color:#fff;border-radius:50%;width:60px;height:60px;display:flex;justify-content:center;align-items:center;font-size:30px;box-shadow:0 10px 20px rgba(0,0,0,.15);text-decoration:none;z-index:999;transition:transform .2s ease}
     .whatsapp-float:hover{transform:scale(1.05)}
 
+    /* Responsive: stack at tablet */
     @media (max-width:1080px){
-      /* keep 70:30 until tablet, then stack */
       .hero-split{grid-template-columns:1fr;padding:14px}
-      .text-panel{position:relative;left:auto;right:auto;top:auto;margin:16px auto;text-align:center;max-width:720px}
+      .hero-text-block{position:relative;top:auto;left:auto;transform:none;margin:16px auto;max-width:720px}
     }
     @media (max-width:768px){
       .section{padding:18px}
@@ -161,13 +204,13 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <!-- HERO — 70% image + text (inside), 30% form -->
+  <!-- HERO — 70% image + centered text, 30% form -->
   <section class="hero-split" aria-label="Hero">
     <div class="hero-left">
       <img class="hero-img" src="images/Solar Logo.jpg" alt="Sparkle Solar">
-      <div class="text-panel">
-        <h1><span class="text-chip">Harness the Sun. Cut Bills. Power Your Future.</span></h1>
-        <p><span class="text-chip">On-Grid • Off-Grid • Hybrid | Residential • Commercial • Industrial</span></p>
+      <div class="hero-text-block">
+        <h1>Harness the Sun. Cut Bills. Power Your Future.</h1>
+        <p>On-Grid • Off-Grid • Hybrid | Residential • Commercial • Industrial</p>
         <div class="cta-row">
           <a class="button white" href="quote.html">⚡ Get a FREE Solar Quote</a>
           <a class="button" href="https://wa.me/918888856841">💬 Chat on WhatsApp</a>
@@ -302,6 +345,7 @@
 
   <a href="https://wa.me/918888856841" class="whatsapp-float" aria-label="Chat on WhatsApp">💬</a>
 
+  <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-hidden="true"><img src="" alt="Enlarged Solar Project"></div>
 
   <script>
@@ -339,7 +383,7 @@
         `Pincode: ${pin}`,
         `Avg Monthly Bill: ${bill}`
       ];
-      return parts.join('\n');
+      return parts.join('\\n');
     }
     function sendToWhatsApp(form){
       const fd = new FormData(form);
@@ -392,7 +436,12 @@
     document.querySelectorAll('.chip').forEach(lbl=>{
       lbl.tabIndex = 0;
       lbl.addEventListener('keydown',e=>{
-        if(e.key==='Enter' || e.key===' '){ e.preventDefault(); const id = lbl.getAttribute('for'); const input = document.getElementById(id); if(input){ input.checked = true; input.dispatchEvent(new Event('change',{bubbles:true}))}}
+        if(e.key==='Enter' || e.key===' '){
+          e.preventDefault();
+          const id = lbl.getAttribute('for');
+          const input = document.getElementById(id);
+          if(input){ input.checked = true; input.dispatchEvent(new Event('change',{bubbles:true}))}
+        }
       });
     });
   </script>
