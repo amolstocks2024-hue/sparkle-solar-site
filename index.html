@@ -42,7 +42,7 @@
       padding:14px;
     }
 
-    /* Left image */
+    /* Left image area */
     .hero-left{position:relative;overflow:hidden;border-radius:18px;background:#fffef6}
     .hero-img{
       position:absolute;inset:0;width:100%;height:100%;
@@ -51,40 +51,45 @@
     }
     @keyframes heroImgIn{from{transform:scale(1.02);opacity:0}to{transform:scale(1);opacity:1}}
 
-    /* Text inside the image sky area */
+    /* Text block — horizontally centered within 70% area */
     .hero-text-block{
       position:absolute;
-      top:8%;
-      left:50%;
-      transform:translateX(-50%);
+      top:12%;               /* keep vertical placement same as before */
+      left:50%;              /* move to the middle of the left 70% */
+      transform:translateX(-25%); /* shift slightly right to visually center inside 70% */
       text-align:center;
-      width:min(92%,920px);
+      width:min(90%,780px);
       padding:0 2vw;
-      pointer-events:none;
     }
+
     .hero-text-block h1{
-      font-size:clamp(1.8rem,4.4vw,3.2rem);
+      font-size:clamp(2rem,4vw,3rem);
       font-weight:800;
       color:#3c2f00;
-      line-height:1.15;
-      margin:0 0 10px 0;
-      text-shadow:0 2px 4px rgba(255,255,255,0.85),0 0 1px rgba(255,255,255,0.9);
-      animation:fadeDown .6s ease-out both;
+      line-height:1.2;
+      text-shadow:0 2px 4px rgba(255,255,255,0.85);
+      animation:fadeIn .7s ease-out both;
     }
     .hero-text-block p{
-      margin:0;
-      font-size:clamp(1rem,1.6vw,1.15rem);
+      margin-top:10px;
+      font-size:1.15rem;
       color:#4a3b00;
       text-shadow:0 1px 3px rgba(255,255,255,0.85);
-      animation:fadeDown .6s ease-out .12s both;
+      animation:fadeIn .7s ease-out .15s both;
     }
     .hero-text-block .cta-row{
-      margin-top:16px;
-      display:flex;justify-content:center;gap:12px;flex-wrap:wrap;
-      pointer-events:auto;
-      animation:fadeDown .5s ease-out .24s both;
+      margin-top:18px;
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      animation:fadeIn .7s ease-out .3s both;
     }
-    @keyframes fadeDown{from{transform:translate(-50%,-10px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(10px)}
+      to{opacity:1;transform:translateY(0)}
+    }
 
     .button{
       display:inline-block;padding:12px 20px;border-radius:10px;font-weight:800;text-decoration:none;
@@ -94,7 +99,7 @@
     .button.white{background:#ffffff;border:2px solid #ffd34a;color:#6a5500}
     .button:hover{transform:translateY(-2px)}
 
-    /* Form (right side) */
+    /* Form */
     .hero-right{display:flex;align-items:center;justify-content:center}
     .quote-card{width:100%;max-width:480px;background:#fff;border-radius:22px;padding:20px;box-shadow:0 12px 40px rgba(0,0,0,.10);border:2px solid #eef0f4;animation:formIn .5s ease-out .2s both}
     @keyframes formIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
@@ -105,25 +110,19 @@
     .quote-card input[type="text"],.quote-card input[type="tel"]{width:100%;border:1.6px solid #e5e7eb;outline:0;border-radius:10px;padding:11px 12px;font-size:1rem;transition:border-color .2s ease,box-shadow .2s ease}
     .quote-card input:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.15)}
     .bill-row{margin-top:6px}
-    .bill-row label{display:flex;align-items:center;gap:8px}
-    .info{display:inline-flex;align-items:center}
     .chip-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
     .chip-group input{display:none}
     .chip{display:inline-block;padding:9px 12px;border-radius:12px;cursor:pointer;border:1.6px solid #e5e7eb;background:#fff;color:#1f2937;font-weight:700;font-size:.93rem;transition:all .15s ease}
     .chip-group input:checked + .chip,.chip:hover{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.12)}
     .agree{display:flex;align-items:flex-start;gap:10px;margin-top:12px;color:#6b7280}
-    .agree input{margin-top:3px}
     .agree a{color:#1e40af;text-decoration:underline}
     .cta-primary{margin-top:12px;width:100%;padding:13px 16px;border-radius:16px;border:0;cursor:pointer;background:#0b122b;color:#fff;font-weight:800;font-size:1.03rem;transition:transform .15s ease,box-shadow .15s ease}
     .cta-primary:hover{transform:translateY(-1px);box-shadow:0 10px 18px rgba(11,18,43,.25)}
 
-    /* Other sections (shortened) */
+    /* General sections */
     .wrap{max-width:1150px;margin:28px auto;padding:0 18px}
     .section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;margin-bottom:22px}
     .section h2{font-size:1.75rem;margin-bottom:14px;color:#6a5500;border-left:8px solid var(--primary);padding-left:12px}
-    ul.clean{list-style:none;margin-top:6px}
-    ul.clean li{padding:6px 0 6px 28px;position:relative}
-    ul.clean li::before{content:"☀";position:absolute;left:0;top:4px;color:#e0a800}
 
     .subsidy-wrap{display:flex;justify-content:center;align-items:center;margin-top:16px}
     .subsidy{text-align:center;background:linear-gradient(180deg,#fff7c9,#ffe987);border:3px solid #ffd34a;border-radius:18px;box-shadow:0 12px 30px rgba(255,204,0,.35);padding:22px 18px;max-width:900px;width:100%;position:relative;overflow:hidden}
@@ -131,15 +130,6 @@
     .subsidy .prices{font-size:clamp(1.25rem,2.8vw,1.6rem);font-weight:800;color:#573f00}
     .subsidy::after{content:"";position:absolute;top:0;left:-120px;width:120px;height:100%;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));transform:skewX(-20deg);animation:shine 1.8s linear infinite}
     @keyframes shine{0%{left:-120px}100%{left:100%}}
-    .pulse{animation:pulse 1.2s ease-in-out infinite}
-    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
-
-    .logos-wrap{display:flex;justify-content:center;align-items:center;background:#fffef6;border:2px solid #ffe27a;border-radius:14px;box-shadow:var(--shadow);padding:16px}
-    .logos-wrap img{width:100%;max-width:980px;height:auto;display:block;margin:0 auto;object-fit:contain;border-radius:10px}
-
-    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;cursor:pointer;box-shadow:var(--shadow);transition:transform .2s ease}
-    .gallery img:hover{transform:scale(1.03)}
 
     .contact{text-align:center;background:linear-gradient(90deg,#fff7c9,#ffe987);padding:34px 18px;border-radius:var(--radius);border:2px solid #ffe27a;box-shadow:var(--shadow)}
     .contact a{color:#6a5500;text-decoration:none;font-weight:700}
@@ -150,7 +140,7 @@
 
     @media (max-width:1080px){
       .hero-split{grid-template-columns:1fr;padding:14px}
-      .hero-text-block{position:relative;top:auto;left:auto;transform:none;margin:16px auto;text-align:center}
+      .hero-text-block{position:relative;left:auto;transform:none;text-align:center;margin:16px auto}
     }
   </style>
 </head>
@@ -182,65 +172,59 @@
     </div>
 
     <div class="hero-right">
-      <form class="quote-card" id="heroQuoteForm" autocomplete="on">
+      <form class="quote-card" id="heroQuoteForm">
         <h2>Book a FREE Solar Consultation</h2>
         <p class="muted">And save up to ₹78,000 with subsidy</p>
 
-        <label for="full_name">Full name <span class="req">*</span></label>
-        <input type="text" id="full_name" name="full_name" placeholder="Enter Full Name" required>
+        <label>Full name *</label>
+        <input type="text" name="full_name" placeholder="Enter Full Name" required>
 
-        <label for="whatsapp">WhatsApp number <span class="req">*</span></label>
-        <input type="tel" id="whatsapp" name="whatsapp" inputmode="tel" placeholder="Enter WhatsApp Number" required>
+        <label>WhatsApp number *</label>
+        <input type="tel" name="whatsapp" placeholder="Enter WhatsApp Number" required>
 
-        <label for="pincode">Pin code <span class="req">*</span></label>
-        <input type="text" id="pincode" name="pincode" inputmode="numeric" pattern="[0-9]{6}" placeholder="Enter Pincode" required>
+        <label>Pin code *</label>
+        <input type="text" name="pincode" placeholder="Enter Pincode" pattern="[0-9]{6}" required>
 
-        <div class="bill-row">
-          <label>What is your average monthly bill? <span class="req">*</span></label>
-          <div class="chip-group">
-            <input type="radio" name="monthly_bill" id="b1" value="<1500" required><label for="b1" class="chip">Less than ₹1500</label>
-            <input type="radio" name="monthly_bill" id="b2" value="1500-2500"><label for="b2" class="chip">₹1500 – ₹2500</label>
-            <input type="radio" name="monthly_bill" id="b3" value="2500-4000"><label for="b3" class="chip">₹2500 – ₹4000</label>
-            <input type="radio" name="monthly_bill" id="b4" value="4000-8000"><label for="b4" class="chip">₹4000 – ₹8000</label>
-            <input type="radio" name="monthly_bill" id="b5" value=">8000"><label for="b5" class="chip">More than ₹8000</label>
-          </div>
+        <label>What is your average monthly bill? *</label>
+        <div class="chip-group">
+          <input type="radio" name="monthly_bill" id="b1" value="<1500" required><label for="b1" class="chip">Less than ₹1500</label>
+          <input type="radio" name="monthly_bill" id="b2" value="1500-2500"><label for="b2" class="chip">₹1500 – ₹2500</label>
+          <input type="radio" name="monthly_bill" id="b3" value="2500-4000"><label for="b3" class="chip">₹2500 – ₹4000</label>
+          <input type="radio" name="monthly_bill" id="b4" value="4000-8000"><label for="b4" class="chip">₹4000 – ₹8000</label>
+          <input type="radio" name="monthly_bill" id="b5" value=">8000"><label for="b5" class="chip">More than ₹8000</label>
         </div>
 
-        <label class="agree"><input type="checkbox" id="agree" required> I agree to SolarSquare's <a href="#">terms</a> & <a href="#">privacy policy</a></label>
-        <button type="submit" class="cta-primary" id="heroSubmitBtn">Get a FREE Quote</button>
+        <label class="agree"><input type="checkbox" required> I agree to SolarSquare’s <a href="#">terms</a> & <a href="#">privacy policy</a></label>
+        <button type="submit" class="cta-primary">Get a FREE Quote</button>
       </form>
     </div>
   </section>
 
   <main class="wrap">
-
     <section class="section">
       <div class="subsidy-wrap">
         <div class="subsidy">
           <h3>PM Surya Ghar Muft Bijli Yojana – Subsidy</h3>
           <div class="prices">
-            <span class="pulse"><strong>1 kW</strong> – ₹<span class="count" data-target="30000">0</span></span> •
-            <span class="pulse"><strong>2 kW</strong> – ₹<span class="count" data-target="60000">0</span></span> •
-            <span class="pulse"><strong>3–10 kW</strong> – ₹<span class="count" data-target="78000">0</span></span>
+            <span><strong>1 kW</strong> – ₹30,000</span> •
+            <span><strong>2 kW</strong> – ₹60,000</span> •
+            <span><strong>3–10 kW</strong> – ₹78,000</span>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- Other sections ... (Why, Services, Brands, Projects, Reach, Contact) -->
-
   </main>
 
   <footer>© 2025 Sparkle Solar — Save Money. Save Energy. Save Future.</footer>
 
-  <a href="https://wa.me/918888856841" class="whatsapp-float" aria-label="Chat on WhatsApp">💬</a>
+  <a href="https://wa.me/918888856841" class="whatsapp-float">💬</a>
 
   <script>
-    // WhatsApp form submission
-    const heroForm=document.getElementById('heroQuoteForm');
-    heroForm?.addEventListener('submit',e=>{
+    // WhatsApp form submit
+    const form=document.getElementById('heroQuoteForm');
+    form?.addEventListener('submit',e=>{
       e.preventDefault();
-      const fd=new FormData(heroForm);
+      const fd=new FormData(form);
       const msg=`New Solar Inquiry (Website)
 Name: ${fd.get('full_name')}
 WhatsApp: ${fd.get('whatsapp')}
@@ -248,10 +232,6 @@ Pincode: ${fd.get('pincode')}
 Avg Monthly Bill: ${fd.get('monthly_bill')}`;
       window.location.href='https://wa.me/918888856841?text='+encodeURIComponent(msg);
     });
-
-    // Subsidy animation
-    const counters=document.querySelectorAll('.count');
-    const animateCounters=()=>{
-      counters.forEach(el=>{
-        const t=+el.dataset.target,s=0,d=1000,st=performance.now();
-        const step=n=>{const p=Math.min((n-st)/d
+  </script>
+</body>
+</html>
