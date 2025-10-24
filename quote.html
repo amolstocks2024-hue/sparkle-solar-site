@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request a Quote | Sparkle Solar</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #fafafa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 450px;
+      text-align: center;
+    }
+    h2 {
+      color: #f5b301;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+    button {
+      background: #f5b301;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
+    }
+    button:hover {
+      background: #ffcc00;
+    }
+    a {
+      display: block;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #555;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Request a Free Solar Quote ⚡</h2>
+    <input type="text" id="name" placeholder="Name" required>
+    <input type="tel" id="mobile" placeholder="Mobile Number" required>
+    <input type="text" id="city" placeholder="City" required>
+    <input type="text" id="capacity" placeholder="Capacity Needed (in KW)" required>
+    <button onclick="sendToWhatsApp()">Send via WhatsApp</button>
+    <a href="index.html">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    function sendToWhatsApp() {
+      const name = document.getElementById('name').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
+      const city = document.getElementById('city').value.trim();
+      const capacity = document.getElementById('capacity').value.trim();
+
+      if (!name || !mobile || !city || !capacity) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      const message = `Hello Sparkle Solar,%0A%0AI would like to request a quote:%0A%0A🔹 Name: ${name}%0A🔹 Mobile: ${mobile}%0A🔹 City: ${city}%0A🔹 Capacity Needed: ${capacity} KW%0A%0AThank you!`;
+      const url = `https://wa.me/918888856841?text=${message}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
