@@ -20,70 +20,55 @@
     }
 
     *{margin:0;padding:0;box-sizing:border-box}
-    body{
-      font-family:"Poppins",sans-serif;
-      background:var(--bg);
-      color:var(--text-dark);
-      line-height:1.65;
-    }
+    body{font-family:"Poppins",sans-serif;background:var(--bg);color:var(--text-dark);line-height:1.65}
 
     header{
       background:linear-gradient(90deg,#ffe680,var(--primary),#ffd43b);
-      color:var(--text-darker);
-      text-align:center;
-      padding:14px 10px;
-      font-size:1.1rem;
-      font-weight:700;
-      border-bottom:3px solid var(--accent);
+      color:var(--text-darker);text-align:center;padding:14px 10px;
+      font-size:1.1rem;font-weight:700;border-bottom:3px solid var(--accent);
     }
 
-    .nav{
-      max-width:1200px;margin:0 auto;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;padding:10px 16px;
-    }
-    .nav a{
-      text-decoration:none;color:var(--text-darker);background:#fff4cc;
-      padding:8px 14px;border-radius:999px;font-weight:700;font-size:.95rem;box-shadow:var(--shadow);
-      transition:transform .2s ease;
-    }
+    .nav{max-width:1200px;margin:0 auto;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;padding:10px 16px}
+    .nav a{text-decoration:none;color:var(--text-darker);background:#fff4cc;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.95rem;box-shadow:var(--shadow);transition:transform .2s ease}
     .nav a:hover{transform:translateY(-2px)}
 
-    /* HERO — show full image, no crop, no tint; text in left half */
-    .hero{
-      position:relative;min-height:72vh;overflow:hidden;
-      border-bottom-left-radius:28px;border-bottom-right-radius:28px;
-      background:var(--bg); /* warm backdrop behind any empty space (no black) */
-      display:flex;justify-content:center;
+    /* ===== HERO — split: image+text (left) and form (right) ===== */
+    .hero-split{
+      display:grid;grid-template-columns:1fr 1fr;gap:18px;min-height:78vh;
+      border-bottom-left-radius:28px;border-bottom-right-radius:28px;background:var(--bg);padding:18px;
     }
-    .hero-img{
-      position:absolute;inset:0;
-      width:100%;height:100%;
-      object-fit:contain;       /* 👈 show ENTIRE image */
-      object-position:center top;
-      pointer-events:none;      /* keep clicks for buttons */
-      user-select:none;
-    }
-    .hero-content{
-      position:relative;z-index:1;width:100%;max-width:1150px;padding:26px 18px;
-      display:flex;justify-content:flex-start;align-items:flex-start;
-    }
-    .text-panel{
-      width:min(50%,640px);      /* left half for text */
-      text-align:left;
-    }
-    .text-panel h1{
-      font-size:clamp(2rem,4.6vw,3.4rem);
-      color:#6a5500;font-weight:800;line-height:1.15;margin-bottom:8px;
-      text-shadow:0 1px 0 rgba(255,255,255,.9);
-    }
-    .text-panel p{font-size:1.1rem;color:#5b4b00}
+    /* Left: full image (contain, no crop) + text anchored left-to-center */
+    .hero-left{position:relative;overflow:hidden;border-radius:18px;background:#fffef6}
+    .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;pointer-events:none;user-select:none}
+    .text-panel{position:relative;z-index:1;max-width:560px;padding:26px;margin-left:2%}
+    .text-panel h1{font-size:clamp(1.9rem,4.4vw,3.1rem);color:#6a5500;font-weight:800;line-height:1.15;margin-bottom:8px;text-shadow:0 1px 0 rgba(255,255,255,.9)}
+    .text-panel p{font-size:1.05rem;color:#5b4b00}
     .cta-row{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap}
-    .button{
-      display:inline-block;padding:12px 20px;border-radius:10px;font-weight:800;text-decoration:none;
-      box-shadow:var(--shadow);border:0;transition:transform .2s ease, box-shadow .2s ease;
-      background:linear-gradient(90deg,#ffd54d,#ffcd1a);color:#402f00;
-    }
+    .button{display:inline-block;padding:12px 20px;border-radius:10px;font-weight:800;text-decoration:none;box-shadow:var(--shadow);border:0;transition:transform .2s ease,box-shadow .2s ease;background:linear-gradient(90deg,#ffd54d,#ffcd1a);color:#402f00}
     .button.white{background:#ffffff;border:2px solid #ffd34a;color:#6a5500}
     .button:hover{transform:translateY(-2px)}
+    .hero-right{display:flex;align-items:center;justify-content:center}
+
+    /* Form card (used here; quote.html has a bigger version) */
+    .quote-card{width:100%;max-width:520px;background:#fff;border-radius:22px;padding:22px;box-shadow:0 12px 40px rgba(0,0,0,.10);border:2px solid #eef0f4}
+    .quote-card h2{font-size:1.55rem;line-height:1.25;color:#1e2330}
+    .quote-card .muted{color:#6b7280;margin-bottom:14px}
+    .quote-card label{display:block;font-weight:700;color:#1e2330;margin:12px 0 6px}
+    .req{color:#e11d48;font-weight:800}
+    .quote-card input[type="text"], .quote-card input[type="tel"]{width:100%;border:1.6px solid #e5e7eb;outline:0;border-radius:10px;padding:12px 14px;font-size:1rem;transition:border-color .2s ease,box-shadow .2s ease}
+    .quote-card input:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.15)}
+    .bill-row{margin-top:8px}
+    .bill-row label{display:flex;align-items:center;gap:8px}
+    .info{display:inline-flex;align-items:center}
+    .chip-group{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+    .chip-group input{display:none}
+    .chip{display:inline-block;padding:10px 14px;border-radius:12px;cursor:pointer;border:1.6px solid #e5e7eb;background:#fff;color:#1f2937;font-weight:700;font-size:.95rem;transition:all .15s ease}
+    .chip-group input:checked + .chip, .chip:hover{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.12)}
+    .agree{display:flex;align-items:flex-start;gap:10px;margin-top:14px;color:#6b7280}
+    .agree input{margin-top:3px}
+    .agree a{color:#1e40af;text-decoration:underline}
+    .cta-primary{margin-top:16px;width:100%;padding:14px 18px;border-radius:16px;border:0;cursor:pointer;background:#0b122b;color:#fff;font-weight:800;font-size:1.05rem;transition:transform .15s ease,box-shadow .15s ease}
+    .cta-primary:hover{transform:translateY(-1px);box-shadow:0 10px 18px rgba(11,18,43,.25)}
 
     .wrap{max-width:1150px;margin:28px auto;padding:0 18px}
     .section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;margin-bottom:22px}
@@ -93,23 +78,21 @@
     ul.clean li{padding:6px 0 6px 28px;position:relative}
     ul.clean li::before{content:"☀";position:absolute;left:0;top:4px;color:#e0a800}
 
-    /* Subsidy (fast shimmer kept) */
+    /* Subsidy — centered + faster shimmer + number pulse */
     .subsidy-wrap{display:flex;justify-content:center;align-items:center;margin-top:16px}
-    .subsidy{ text-align:center;background:linear-gradient(180deg,#fff7c9,#ffe987);
-      border:3px solid #ffd34a;border-radius:18px;box-shadow:0 12px 30px rgba(255,204,0,.35);
-      padding:22px 18px;max-width:900px;width:100%;position:relative;overflow:hidden}
+    .subsidy{text-align:center;background:linear-gradient(180deg,#fff7c9,#ffe987);border:3px solid #ffd34a;border-radius:18px;box-shadow:0 12px 30px rgba(255,204,0,.35);padding:22px 18px;max-width:900px;width:100%;position:relative;overflow:hidden}
     .subsidy h3{color:#6a5500;font-size:1.35rem;margin-bottom:6px}
     .subsidy .prices{font-size:clamp(1.25rem,2.8vw,1.6rem);font-weight:800;color:#573f00}
-    .subsidy::after{content:"";position:absolute;top:0;left:-120px;width:120px;height:100%;
-      background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.55), rgba(255,255,255,0));
-      transform:skewX(-20deg);animation:shine 1.8s linear infinite}
+    .subsidy::after{content:"";position:absolute;top:0;left:-120px;width:120px;height:100%;background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.55), rgba(255,255,255,0));transform:skewX(-20deg);animation:shine 1.8s linear infinite}
     @keyframes shine{0%{left:-120px}100%{left:100%}}
     .pulse{animation:pulse 1.2s ease-in-out infinite}
     @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
 
+    /* Brands: single image logos */
     .logos-wrap{display:flex;justify-content:center;align-items:center;background:#fffef6;border:2px solid #ffe27a;border-radius:14px;box-shadow:var(--shadow);padding:16px}
     .logos-wrap img{width:100%;max-width:980px;height:auto;display:block;margin:0 auto;object-fit:contain;border-radius:10px}
 
+    /* Gallery + Lightbox */
     .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
     .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;cursor:pointer;box-shadow:var(--shadow);transition:transform .2s ease}
     .gallery img:hover{transform:scale(1.03)}
@@ -128,11 +111,13 @@
     .whatsapp-float{position:fixed;bottom:18px;right:18px;background-color:#25d366;color:#fff;border-radius:50%;width:60px;height:60px;display:flex;justify-content:center;align-items:center;font-size:30px;box-shadow:0 10px 20px rgba(0,0,0,.15);text-decoration:none;z-index:999;transition:transform .2s ease}
     .whatsapp-float:hover{transform:scale(1.05)}
 
+    @media (max-width:980px){
+      .hero-split{grid-template-columns:1fr;padding:14px}
+      .text-panel{margin:16px auto;text-align:center}
+    }
     @media (max-width:768px){
       .section{padding:18px}
       .gallery img{height:160px}
-      .hero{min-height:60vh}
-      .text-panel{width:100%;max-width:640px}
     }
   </style>
 </head>
@@ -149,10 +134,10 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <!-- HERO — full image visible -->
-  <section class="hero" aria-label="Hero">
-    <img class="hero-img" src="images/Solar Logo.jpg" alt="Sparkle Solar hero">
-    <div class="hero-content">
+  <!-- HERO — split: image+text left, form right -->
+  <section class="hero-split" aria-label="Hero">
+    <div class="hero-left">
+      <img class="hero-img" src="images/Solar Logo.jpg" alt="Sparkle Solar">
       <div class="text-panel">
         <h1>Harness the Sun. Cut Bills. Power Your Future.</h1>
         <p>On-Grid • Off-Grid • Hybrid | Residential • Commercial • Industrial</p>
@@ -162,11 +147,50 @@
         </div>
       </div>
     </div>
+
+    <div class="hero-right">
+      <!-- This form navigates to quote.html (keeps current flow intact) -->
+      <form class="quote-card" action="quote.html" method="get" id="heroQuoteForm" autocomplete="on">
+        <h2>Book a FREE Solar Consultation</h2>
+        <p class="muted">And save up to ₹78,000 with subsidy</p>
+
+        <label for="full_name">Full name <span class="req">*</span></label>
+        <input type="text" id="full_name" name="full_name" placeholder="Enter Full Name" required>
+
+        <label for="whatsapp">WhatsApp number <span class="req">*</span></label>
+        <input type="tel" id="whatsapp" name="whatsapp" inputmode="tel" placeholder="Enter WhatsApp Number" required>
+
+        <label for="pincode">Pin code <span class="req">*</span></label>
+        <input type="text" id="pincode" name="pincode" inputmode="numeric" pattern="[0-9]{6}" placeholder="Enter Pincode" required>
+
+        <div class="bill-row">
+          <label>What is your average monthly bill? <span class="req">*</span>
+            <span class="info" aria-label="Info" title="Approximate your recent electricity bill.">
+              <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="#777" stroke-width="1.6"/><circle cx="12" cy="7.5" r="1.2" fill="#777"/><path d="M12 10.5v6" stroke="#777" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+          </label>
+          <div class="chip-group" role="radiogroup" aria-label="Average bill">
+            <input type="radio" name="monthly_bill" id="b1" value="<1500" required><label for="b1" class="chip">Less than ₹1500</label>
+            <input type="radio" name="monthly_bill" id="b2" value="1500-2500"><label for="b2" class="chip">₹1500 – ₹2500</label>
+            <input type="radio" name="monthly_bill" id="b3" value="2500-4000"><label for="b3" class="chip">₹2500 – ₹4000</label>
+            <input type="radio" name="monthly_bill" id="b4" value="4000-8000"><label for="b4" class="chip">₹4000 – ₹8000</label>
+            <input type="radio" name="monthly_bill" id="b5" value=">8000"><label for="b5" class="chip">More than ₹8000</label>
+          </div>
+        </div>
+
+        <label class="agree">
+          <input type="checkbox" id="agree" required>
+          <span>I agree to SolarSquare's <a href="#">terms of service</a> &amp; <a href="#">privacy policy</a></span>
+        </label>
+
+        <button type="submit" class="cta-primary">Get a FREE Quote</button>
+      </form>
+    </div>
   </section>
 
   <main class="wrap">
 
-    <!-- SUBSIDY -->
+    <!-- SUBSIDY — center of attraction -->
     <section class="section" aria-labelledby="subsidy-title">
       <div class="subsidy-wrap">
         <div class="subsidy">
@@ -191,21 +215,21 @@
         <li>Experienced team & quality components</li>
         <li>Government subsidy guidance & documentation</li>
       </ul>
-      <div class="stats" style="margin-top:16px">
-        <div class="stat">1&nbsp;MW <small>Projects Completed (EPC)</small></div>
-        <div class="stat">2&nbsp;MW <small>Trading Since Establishment</small></div>
-        <div class="stat">Since&nbsp;2023 <small>Serving Solar Market</small></div>
+      <div class="stats" style="margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+        <div class="stat" style="background:#fff6c7;border-radius:12px;padding:16px;text-align:center;font-weight:700;color:#5b4b00;box-shadow:var(--shadow)">1&nbsp;MW <small style="display:block;font-weight:600;opacity:.85">Projects Completed (EPC)</small></div>
+        <div class="stat" style="background:#fff6c7;border-radius:12px;padding:16px;text-align:center;font-weight:700;color:#5b4b00;box-shadow:var(--shadow)">2&nbsp;MW <small style="display:block;font-weight:600;opacity:.85">Trading Since Establishment</small></div>
+        <div class="stat" style="background:#fff6c7;border-radius:12px;padding:16px;text-align:center;font-weight:700;color:#5b4b00;box-shadow:var(--shadow)">Since&nbsp;2023 <small style="display:block;font-weight:600;opacity:.85">Serving Solar Market</small></div>
       </div>
     </section>
 
     <!-- SERVICES -->
     <section id="services" class="section" aria-labelledby="services-title">
       <h2 id="services-title">Our Services</h2>
-      <div class="cards">
-        <div class="card"><h3>On-Grid Rooftop Solar</h3><p>Integrate solar with the grid for reduced bills and net-metering credits.</p></div>
-        <div class="card"><h3>Hybrid Rooftop Solar</h3><p>Switch between solar, grid, and storage for reliability and savings.</p></div>
-        <div class="card"><h3>Off-Grid Rooftop Solar</h3><p>Energy independence with battery-backed systems for remote/unreliable grids.</p></div>
-        <div class="card"><h3>Solar Street Lighting</h3><p>Efficient solar LED lights for safer, brighter public spaces.</p></div>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px">
+        <div class="card" style="border-radius:12px;background:#fff;box-shadow:var(--shadow);padding:16px;border:2px solid #ffe27a"><h3>On-Grid Rooftop Solar</h3><p>Integrate solar with the grid for reduced bills and net-metering credits.</p></div>
+        <div class="card" style="border-radius:12px;background:#fff;box-shadow:var(--shadow);padding:16px;border:2px solid #ffe27a"><h3>Hybrid Rooftop Solar</h3><p>Switch between solar, grid, and storage for reliability and savings.</p></div>
+        <div class="card" style="border-radius:12px;background:#fff;box-shadow:var(--shadow);padding:16px;border:2px solid #ffe27a"><h3>Off-Grid Rooftop Solar</h3><p>Energy independence with battery-backed systems for remote/unreliable grids.</p></div>
+        <div class="card" style="border-radius:12px;background:#fff;box-shadow:var(--shadow);padding:16px;border:2px solid #ffe27a"><h3>Solar Street Lighting</h3><p>Efficient solar LED lights for safer, brighter public spaces.</p></div>
       </div>
     </section>
 
@@ -250,9 +274,8 @@
 
   <a href="https://wa.me/918888856841" class="whatsapp-float" aria-label="Chat on WhatsApp">💬</a>
 
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <img src="" alt="Enlarged Solar Project">
-  </div>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true"><img src="" alt="Enlarged Solar Project"></div>
 
   <script>
     // Subsidy count-up animation
@@ -260,13 +283,10 @@
     const animateCounters = () => {
       counters.forEach(el => {
         const target = +el.getAttribute("data-target");
-        const duration = 1000;
-        const start = 0;
-        const startTime = performance.now();
+        const duration = 1000, start = 0, startTime = performance.now();
         const step = (now) => {
           const progress = Math.min((now - startTime) / duration, 1);
-          const value = Math.floor(start + (target - start) * progress);
-          el.textContent = value.toLocaleString("en-IN");
+          el.textContent = Math.floor(start + (target - start) * progress).toLocaleString("en-IN");
           if (progress < 1) requestAnimationFrame(step);
         };
         requestAnimationFrame(step);
@@ -274,15 +294,12 @@
     };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting){
-          animateCounters();
-          observer.disconnect();
-        }
+        if (entry.isIntersecting){ animateCounters(); observer.disconnect(); }
       });
     }, {threshold: 0.4});
     observer.observe(document.querySelector(".subsidy"));
 
-    // Gallery
+    // Gallery — only your provided .jpeg filenames
     const galleryImages = [
       "WhatsApp Image 2025-10-24 at 1.08.16 PM.jpeg",
       "WhatsApp Image 2025-10-24 at 1.08.19 PM.jpeg",
@@ -309,21 +326,18 @@
     const lightboxImg = lightbox.querySelector("img");
     galleryImages.forEach(name => {
       const img = document.createElement("img");
-      img.src = `images/${name}`;
-      img.alt = "Sparkle Solar Project";
-      img.loading = "lazy";
-      img.decoding = "async";
-      img.addEventListener("click", () => {
-        lightbox.classList.add("active");
-        lightbox.setAttribute("aria-hidden","false");
-        lightboxImg.src = img.src;
-      });
+      img.src = `images/${name}`; img.alt = "Sparkle Solar Project"; img.loading = "lazy"; img.decoding = "async";
+      img.addEventListener("click", () => { lightbox.classList.add("active"); lightbox.setAttribute("aria-hidden","false"); lightboxImg.src = img.src; });
       gallery.appendChild(img);
     });
-    lightbox.addEventListener("click", () => {
-      lightbox.classList.remove("active");
-      lightbox.setAttribute("aria-hidden","true");
-      lightboxImg.src = "";
+    lightbox.addEventListener("click", () => { lightbox.classList.remove("active"); lightbox.setAttribute("aria-hidden","true"); lightboxImg.src = ""; });
+
+    // Accessibility for chips
+    document.querySelectorAll('.chip').forEach(lbl=>{
+      lbl.tabIndex = 0;
+      lbl.addEventListener('keydown',e=>{
+        if(e.key==='Enter' || e.key===' '){ e.preventDefault(); const id = lbl.getAttribute('for'); const input = document.getElementById(id); if(input){ input.checked = true; input.dispatchEvent(new Event('change',{bubbles:true}))}}
+      });
     });
   </script>
 </body>
