@@ -37,7 +37,6 @@
       display:grid;grid-template-columns:1fr 1fr;gap:18px;min-height:78vh;
       border-bottom-left-radius:28px;border-bottom-right-radius:28px;background:var(--bg);padding:18px;
     }
-    /* Left: full image (contain, no crop) + text anchored left-to-center */
     .hero-left{position:relative;overflow:hidden;border-radius:18px;background:#fffef6}
     .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;pointer-events:none;user-select:none}
     .text-panel{position:relative;z-index:1;max-width:560px;padding:26px;margin-left:2%}
@@ -88,7 +87,7 @@
     .pulse{animation:pulse 1.2s ease-in-out infinite}
     @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
 
-    /* Brands: single image logos */
+    /* Brands */
     .logos-wrap{display:flex;justify-content:center;align-items:center;background:#fffef6;border:2px solid #ffe27a;border-radius:14px;box-shadow:var(--shadow);padding:16px}
     .logos-wrap img{width:100%;max-width:980px;height:auto;display:block;margin:0 auto;object-fit:contain;border-radius:10px}
 
@@ -149,8 +148,8 @@
     </div>
 
     <div class="hero-right">
-      <!-- This form navigates to quote.html (keeps current flow intact) -->
-      <form class="quote-card" action="quote.html" method="get" id="heroQuoteForm" autocomplete="on">
+      <!-- Form now sends data to WhatsApp -->
+      <form class="quote-card" id="heroQuoteForm" autocomplete="on">
         <h2>Book a FREE Solar Consultation</h2>
         <p class="muted">And save up to ₹78,000 with subsidy</p>
 
@@ -183,14 +182,15 @@
           <span>I agree to SolarSquare's <a href="#">terms of service</a> &amp; <a href="#">privacy policy</a></span>
         </label>
 
-        <button type="submit" class="cta-primary">Get a FREE Quote</button>
+        <button type="submit" class="cta-primary" id="heroSubmitBtn">Get a FREE Quote</button>
+        <div id="heroFormStatus" style="margin-top:10px;font-size:.95rem;color:#2563eb;display:none;"></div>
       </form>
     </div>
   </section>
 
   <main class="wrap">
 
-    <!-- SUBSIDY — center of attraction -->
+    <!-- SUBSIDY -->
     <section class="section" aria-labelledby="subsidy-title">
       <div class="subsidy-wrap">
         <div class="subsidy">
@@ -274,7 +274,6 @@
 
   <a href="https://wa.me/918888856841" class="whatsapp-float" aria-label="Chat on WhatsApp">💬</a>
 
-  <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-hidden="true"><img src="" alt="Enlarged Solar Project"></div>
 
   <script>
@@ -299,7 +298,36 @@
     }, {threshold: 0.4});
     observer.observe(document.querySelector(".subsidy"));
 
-    // Gallery — only your provided .jpeg filenames
+    // Build WhatsApp message from any form
+    function buildWaMessage(data){
+      const name = data.get('full_name') || '';
+      const phone = data.get('whatsapp') || '';
+      const pin = data.get('pincode') || '';
+      const bill = data.get('monthly_bill') || '';
+      const parts = [
+        'New Solar Inquiry (Website)',
+        `Name: ${name}`,
+        `WhatsApp: ${phone}`,
+        `Pincode: ${pin}`,
+        `Avg Monthly Bill: ${bill}`
+      ];
+      return parts.join('\n');
+    }
+    function sendToWhatsApp(form){
+      const fd = new FormData(form);
+      const msg = buildWaMessage(fd);
+      const url = 'https://wa.me/918888856841?text=' + encodeURIComponent(msg);
+      window.location.href = url; // open WhatsApp
+    }
+
+    // Hero form handler -> WhatsApp
+    const heroForm = document.getElementById('heroQuoteForm');
+    heroForm?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      sendToWhatsApp(heroForm);
+    });
+
+    // Gallery
     const galleryImages = [
       "WhatsApp Image 2025-10-24 at 1.08.16 PM.jpeg",
       "WhatsApp Image 2025-10-24 at 1.08.19 PM.jpeg",
