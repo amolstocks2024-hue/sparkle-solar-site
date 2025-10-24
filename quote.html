@@ -1,89 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Request a Quote | Sparkle Solar</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Get a FREE Solar Quote | Sparkle Solar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet"/>
   <style>
-    body {
-      font-family: "Poppins", sans-serif;
-      background-color: #fafafa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+    :root{
+      --bg:#0b122b;           /* deep navy backdrop like your screenshot */
+      --card:#ffffff;
+      --text:#1e2330;
+      --muted:#6b7280;
+      --accent:#7c3aed;       /* purple focus ring */
     }
-    .form-container {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      width: 90%;
-      max-width: 450px;
-      text-align: center;
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:"Poppins",sans-serif; background:var(--bg);
+      min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;
     }
-    h2 {
-      color: #f5b301;
-      margin-bottom: 20px;
+    .card{
+      width:100%; max-width:680px; background:var(--card); border-radius:22px;
+      padding:24px; box-shadow:0 20px 60px rgba(0,0,0,.30);
+      border:2px solid #eef0f4;
     }
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 1em;
+    h1{ margin:0 0 4px; font-size:1.8rem; color:var(--text) }
+    .sub{ color:var(--muted); margin-bottom:14px }
+
+    label{ display:block; font-weight:700; color:var(--text); margin:12px 0 6px }
+    .req{ color:#e11d48; font-weight:800 }
+
+    input[type="text"], input[type="tel"]{
+      width:100%; border:1.6px solid #e5e7eb; outline:0; border-radius:10px;
+      padding:12px 14px; font-size:1rem; transition:border-color .2s ease, box-shadow .2s ease;
     }
-    button {
-      background: #f5b301;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 1em;
-      cursor: pointer;
-      transition: 0.3s;
-      width: 100%;
+    input:focus{ border-color:var(--accent); box-shadow:0 0 0 3px rgba(124,58,237,.15) }
+
+    .row{ display:grid; grid-template-columns: 1fr; gap:12px }
+    .bill-block{ margin-top:8px }
+    .bill-title{ display:flex; align-items:center; gap:8px }
+    .bill-title .info svg{ vertical-align:middle }
+
+    .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px }
+    .chips input{ display:none }
+    .chip{
+      display:inline-block; padding:10px 14px; border-radius:12px; cursor:pointer;
+      border:1.6px solid #e5e7eb; background:#fff; color:#1f2937; font-weight:700; font-size:.95rem;
+      transition: all .15s ease;
     }
-    button:hover {
-      background: #ffcc00;
+    .chips input:checked + .chip, .chip:hover{
+      border-color:var(--accent); box-shadow:0 0 0 3px rgba(124,58,237,.12)
     }
-    a {
-      display: block;
-      margin-top: 15px;
-      text-decoration: none;
-      color: #555;
-      font-size: 0.9em;
+
+    .agree{ display:flex; align-items:flex-start; gap:10px; margin-top:14px; color:#6b7280 }
+    .agree input{ margin-top:3px }
+    .agree a{ color:#1e40af; text-decoration:underline }
+
+    .cta{
+      margin-top:16px; width:100%; padding:14px 18px; border-radius:16px; border:0; cursor:pointer;
+      background:#0b122b; color:#fff; font-weight:800; font-size:1.05rem;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .cta:hover{ transform:translateY(-1px); box-shadow:0 10px 18px rgba(11,18,43,.25) }
+
+    @media (min-width:720px){
+      .row-2{ grid-template-columns:1fr 1fr }
     }
   </style>
 </head>
 <body>
-  <div class="form-container">
-    <h2>Request a Free Solar Quote ⚡</h2>
-    <input type="text" id="name" placeholder="Name" required>
-    <input type="tel" id="mobile" placeholder="Mobile Number" required>
-    <input type="text" id="city" placeholder="City" required>
-    <input type="text" id="capacity" placeholder="Capacity Needed (in KW)" required>
-    <button onclick="sendToWhatsApp()">Send via WhatsApp</button>
-    <a href="index.html">⬅ Back to Home</a>
-  </div>
+
+  <form class="card" id="quoteForm" autocomplete="on">
+    <h1>Book a FREE Solar Consultation</h1>
+    <div class="sub">And save up to ₹78,000 with subsidy</div>
+
+    <div class="row">
+      <div>
+        <label for="q_full_name">Full name <span class="req">*</span></label>
+        <input type="text" id="q_full_name" name="full_name" placeholder="Enter Full Name" required>
+      </div>
+
+      <div>
+        <label for="q_whatsapp">WhatsApp number <span class="req">*</span></label>
+        <input type="tel" id="q_whatsapp" name="whatsapp" inputmode="tel" placeholder="Enter WhatsApp Number" required>
+      </div>
+
+      <div>
+        <label for="q_pincode">Pin code <span class="req">*</span></label>
+        <input type="text" id="q_pincode" name="pincode" inputmode="numeric" pattern="[0-9]{6}" placeholder="Enter Pincode" required>
+      </div>
+
+      <div class="bill-block">
+        <div class="bill-title">
+          <label style="margin:0">What is your average monthly bill? <span class="req">*</span></label>
+          <span class="info" aria-label="Info" title="Approximate your recent electricity bill.">
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="#777" stroke-width="1.6"/><circle cx="12" cy="7.5" r="1.2" fill="#777"/><path d="M12 10.5v6" stroke="#777" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+        </div>
+
+        <div class="chips" role="radiogroup" aria-label="Average bill">
+          <input type="radio" name="monthly_bill" id="qb1" value="<1500" required><label for="qb1" class="chip">Less than ₹1500</label>
+          <input type="radio" name="monthly_bill" id="qb2" value="1500-2500"><label for="qb2" class="chip">₹1500 – ₹2500</label>
+          <input type="radio" name="monthly_bill" id="qb3" value="2500-4000"><label for="qb3" class="chip">₹2500 – ₹4000</label>
+          <input type="radio" name="monthly_bill" id="qb4" value="4000-8000"><label for="qb4" class="chip">₹4000 – ₹8000</label>
+          <input type="radio" name="monthly_bill" id="qb5" value=">8000"><label for="qb5" class="chip">More than ₹8000</label>
+        </div>
+      </div>
+
+      <label class="agree">
+        <input type="checkbox" id="q_agree" required>
+        <span>I agree to SolarSquare's <a href="#">terms of service</a> &amp; <a href="#">privacy policy</a></span>
+      </label>
+
+      <button type="submit" class="cta">Get a FREE Quote</button>
+    </div>
+  </form>
 
   <script>
-    function sendToWhatsApp() {
-      const name = document.getElementById('name').value.trim();
-      const mobile = document.getElementById('mobile').value.trim();
-      const city = document.getElementById('city').value.trim();
-      const capacity = document.getElementById('capacity').value.trim();
-
-      if (!name || !mobile || !city || !capacity) {
-        alert('Please fill in all fields.');
-        return;
+    // Prefill from index GET params (if present)
+    const params = new URLSearchParams(location.search);
+    if(params.size){
+      const map = {full_name:'q_full_name', whatsapp:'q_whatsapp', pincode:'q_pincode'};
+      for(const [k,id] of Object.entries(map)){
+        const v = params.get(k);
+        if(v){ const el = document.getElementById(id); if(el){ el.value = v; } }
       }
-
-      const message = `Hello Sparkle Solar,%0A%0AI would like to request a quote:%0A%0A🔹 Name: ${name}%0A🔹 Mobile: ${mobile}%0A🔹 City: ${city}%0A🔹 Capacity Needed: ${capacity} KW%0A%0AThank you!`;
-      const url = `https://wa.me/918888856841?text=${message}`;
-      window.open(url, '_blank');
+      const bill = params.get('monthly_bill');
+      if(bill){
+        const radio = document.querySelector(`input[name="monthly_bill"][value="${bill}"]`);
+        if(radio) radio.checked = true;
+      }
     }
+
+    // Build WhatsApp message
+    function buildWaMessage(data){
+      const name = data.get('full_name') || '';
+      const phone = data.get('whatsapp') || '';
+      const pin = data.get('pincode') || '';
+      const bill = data.get('monthly_bill') || '';
+      const parts = [
+        'New Solar Inquiry (Website)',
+        `Name: ${name}`,
+        `WhatsApp: ${phone}`,
+        `Pincode: ${pin}`,
+        `Avg Monthly Bill: ${bill}`
+      ];
+      return parts.join('\n');
+    }
+    function sendToWhatsApp(form){
+      const fd = new FormData(form);
+      const msg = buildWaMessage(fd);
+      const url = 'https://wa.me/918888856841?text=' + encodeURIComponent(msg);
+      window.location.href = url;
+    }
+
+    // Submit handler -> WhatsApp
+    const quoteForm = document.getElementById('quoteForm');
+    quoteForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      sendToWhatsApp(quoteForm);
+    });
+
+    // Keyboard accessibility for chips
+    document.querySelectorAll('.chip').forEach(lbl=>{
+      lbl.tabIndex = 0;
+      lbl.addEventListener('keydown',e=>{
+        if(e.key==='Enter' || e.key===' '){
+          e.preventDefault();
+          const id = lbl.getAttribute('for');
+          const input = document.getElementById(id);
+          if(input){ input.checked = true; input.dispatchEvent(new Event('change',{bubbles:true}))}
+        }
+      });
+    });
   </script>
 </body>
 </html>
