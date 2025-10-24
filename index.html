@@ -2,287 +2,217 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SPARKLE SOLAR | Power Your Future With Solar Energy</title>
 
+  <!-- Webfont -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
   <style>
-    :root {
-      --primary: #ffcc00;
-      --accent: #f5b301;
-      --text-dark: #333;
-      --text-light: #fff;
-      --bg-light: #fafafa;
-      --bg-dark: #222;
+    :root{
+      --primary:#ffcc00;
+      --accent:#f5b301;
+      --text-dark:#2f2f2f;
+      --text-darker:#222;        /* deep gray (not black) */
+      --text-light:#ffffff;
+      --bg:#fffdf3;              /* warm off-white */
+      --card:#ffffff;
+      --soft:#fff7cf;            /* pale yellow */
+      --soft-2:#fff2b6;
+      --brand-pill:#fff4cc;
+      --shadow:0 8px 24px rgba(0,0,0,0.08);
+      --radius:14px;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      font-family:"Poppins",sans-serif;
+      background:var(--bg);
+      color:var(--text-dark);
+      line-height:1.65;
     }
 
-    body {
-      font-family: "Poppins", sans-serif;
-      background-color: var(--bg-light);
-      color: var(--text-dark);
-      line-height: 1.7;
+    /* ===== Top Bar ===== */
+    header{
+      background:linear-gradient(90deg,#ffe680, var(--primary), #ffd43b);
+      color:var(--text-darker);
+      text-align:center;
+      padding:14px 10px;
+      font-size:1.15rem;
+      font-weight:600;
+      border-bottom:3px solid var(--accent);
     }
 
-    header {
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      color: var(--text-dark);
-      text-align: center;
-      padding: 18px 10px;
-      font-size: 1.6em;
-      font-weight: 600;
+    /* ===== Navigation (optional simple nav) ===== */
+    .nav{
+      max-width:1200px;margin:0 auto;display:flex;gap:14px;flex-wrap:wrap;justify-content:center;padding:10px 16px;
+    }
+    .nav a{
+      text-decoration:none;
+      color:var(--text-darker);
+      background:var(--brand-pill);
+      padding:8px 14px;border-radius:999px;font-weight:600;font-size:.95rem;box-shadow:var(--shadow);
+      transition:transform .2s ease;
+    }
+    .nav a:hover{transform:translateY(-2px)}
+
+    /* ===== HERO (no black anywhere) ===== */
+    .hero{
+      position:relative;min-height:76vh;display:flex;align-items:center;justify-content:center;overflow:hidden;
+      background:radial-gradient(1200px 600px at 10% 10%, #fff7cc 0%, #fff1a8 40%, #ffe57a 70%, #ffdf66 100%);
+      border-bottom-left-radius:28px;border-bottom-right-radius:28px;
+    }
+    .hero img{
+      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out;
+      filter:saturate(1.05) contrast(1.02) brightness(1.02);
+      /* ensure no black background is ever visible */
+      background:transparent;
+    }
+    .hero img.active{opacity:.55;} /* keep imagery soft behind text */
+
+    /* soft overlay instead of black */
+    .hero::after{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(180deg, rgba(255,230,102,0.55), rgba(255,243,179,0.75));
     }
 
-    /* HERO SECTION (FADE SLIDESHOW FIXED) */
-    .hero {
-      position: relative;
-      height: 80vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: var(--text-light);
+    .hero-content{
+      position:relative;z-index:2;max-width:980px;margin:0 auto;padding:20px;text-align:center;
+    }
+    .hero-content h1{
+      font-size:clamp(2rem, 4.8vw, 3.4rem);
+      color:#6a5500;
+      font-weight:800;letter-spacing:.2px;margin-bottom:10px;
+      text-shadow:0 1px 0 rgba(255,255,255,.9);
+    }
+    .hero-kicker{
+      display:inline-block;background:#fff9d6;border:2px solid #ffe27a;border-radius:999px;
+      padding:6px 14px;font-weight:700;margin-bottom:10px;color:#6a5500;
+    }
+    .hero-content p{font-size:1.15rem;color:#5b4b00;margin-top:6px}
+    .cta-row{margin-top:18px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .button{
+      display:inline-block;padding:12px 20px;border-radius:10px;font-weight:700;text-decoration:none;
+      box-shadow:var(--shadow);border:0;transition:transform .2s ease, box-shadow .2s ease;
+      background:linear-gradient(90deg,#ffd54d,#ffcd1a);
+      color:#402f00;
+    }
+    .button.secondary{
+      background:#ffffff;border:2px solid #ffd34a;color:#6a5500;
+    }
+    .button:hover{transform:translateY(-2px)}
+
+    /* ===== Sections ===== */
+    .wrap{max-width:1150px;margin:28px auto;padding:0 18px}
+    .section{
+      background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:26px; margin-bottom:22px;
+    }
+    .section h2{
+      font-size:1.75rem;margin-bottom:14px;color:#6a5500;
+      border-left:8px solid var(--primary);padding-left:12px;
+    }
+    .lead{font-size:1.05rem}
+
+    /* Why / Highlights */
+    ul.clean{list-style:none;margin-top:6px}
+    ul.clean li{padding:6px 0 6px 28px;position:relative}
+    ul.clean li::before{content:"☀";position:absolute;left:0;top:4px;color:#e0a800}
+
+    .pill-note{
+      background:linear-gradient(90deg,#fff6c7,#fff1a3);
+      border-left:6px solid var(--primary);border-radius:12px;padding:16px 18px;margin-top:14px;
+    }
+    .pill-note h3{margin-bottom:8px;color:#6a5500}
+
+    /* Stats row */
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:12px}
+    .stat{
+      background:var(--soft);border-radius:12px;padding:16px;text-align:center;font-weight:700;color:#5b4b00;
+      box-shadow:var(--shadow);
+    }
+    .stat small{display:block;font-weight:600;opacity:.8}
+
+    /* Services */
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:2px}
+    .card{
+      border-radius:12px;background:#fff;box-shadow:var(--shadow);padding:16px;
+      border:2px solid #ffe27a;
+    }
+    .card h3{font-size:1.1rem;margin-bottom:6px;color:#6a5500}
+    .card p{font-size:.97rem}
+
+    /* Brands */
+    .brand-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:12px}
+    .brand{
+      background:var(--brand-pill);border-radius:10px;padding:10px;text-align:center;font-weight:700;color:#5b4b00;border:1px dashed #ffdb66;
     }
 
-    .hero img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      background: #000;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
+    /* Gallery + Lightbox (no black!) */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;cursor:pointer;box-shadow:var(--shadow);transition:transform .2s ease}
+    .gallery img:hover{transform:scale(1.03)}
+    .lightbox{
+      position:fixed;inset:0;display:flex;justify-content:center;align-items:center;
+      background:rgba(255,204,0,0.2); /* warm translucent overlay instead of black */
+      backdrop-filter:blur(3px);
+      opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:1000;
+    }
+    .lightbox.active{opacity:1;pointer-events:auto}
+    .lightbox img{max-width:92%;max-height:86%;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,0.18);animation:fadeIn .25s ease}
+    @keyframes fadeIn{from{transform:scale(.98);opacity:0}to{transform:scale(1);opacity:1}}
+
+    /* Contact / map */
+    .contact{
+      text-align:center;background:linear-gradient(90deg,#fff7c9,#ffe987);
+      padding:34px 18px;border-radius:var(--radius);border:2px solid #ffe27a;box-shadow:var(--shadow);
+    }
+    .contact a{color:#6a5500;text-decoration:none;font-weight:700}
+    .map-container{margin-top:16px;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+
+    /* Footer */
+    footer{
+      margin-top:24px;text-align:center;padding:14px;
+      color:#6a5500;background:linear-gradient(90deg,#fff7c9,#fff1a3);
+      border-top:2px solid #ffd34a;border-bottom-left-radius:18px;border-bottom-right-radius:18px;
     }
 
-    .hero img.active {
-      opacity: 1;
+    /* WhatsApp Floating */
+    .whatsapp-float{
+      position:fixed;bottom:18px;right:18px;background-color:#25d366;color:#fff;border-radius:50%;
+      width:60px;height:60px;display:flex;justify-content:center;align-items:center;font-size:30px;
+      box-shadow:0 10px 20px rgba(0,0,0,.15);text-decoration:none;z-index:999;transition:transform .2s ease;
     }
+    .whatsapp-float:hover{transform:scale(1.05)}
 
-    .hero-overlay {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      background: rgba(0, 0, 0, 0.45);
-      z-index: 1;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      padding: 20px;
-    }
-
-    .hero-content h1 {
-      font-size: 3em;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: #fffbe6;
-    }
-
-    .hero-content p {
-      font-size: 1.3em;
-      color: #f0f0f0;
-    }
-
-    /* SECTION STYLES */
-    .section {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 20px 30px;
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .section h2 {
-      color: var(--accent);
-      border-left: 6px solid var(--primary);
-      padding-left: 12px;
-      margin-bottom: 20px;
-      font-size: 1.8em;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    ul li {
-      padding: 6px 0;
-      font-size: 1.1em;
-      position: relative;
-      padding-left: 25px;
-    }
-
-    ul li::before {
-      content: "☀";
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-    }
-
-    .highlight {
-      background-color: #fffbea;
-      border-left: 5px solid var(--primary);
-      padding: 15px 20px;
-      border-radius: 8px;
-      margin-top: 20px;
-    }
-
-    .highlight h3 {
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
-
-    /* GALLERY */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .gallery img {
-      width: 100%;
-      border-radius: 10px;
-      object-fit: cover;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    /* LIGHTBOX */
-    .lightbox {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 1000;
-    }
-
-    .lightbox.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .lightbox img {
-      max-width: 90%;
-      max-height: 85%;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.2);
-      animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-      from { transform: scale(0.95); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .contact {
-      text-align: center;
-      background: linear-gradient(90deg, #fff3b0, #ffe169);
-      padding: 40px 20px;
-      border-top: 3px solid var(--accent);
-      border-radius: 10px;
-      margin: 50px auto;
-      max-width: 1000px;
-    }
-
-    a.button {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 25px;
-      background: var(--accent);
-      color: #000;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    a.button:hover {
-      background: #f8d000;
-      transform: translateY(-2px);
-    }
-
-    .map-container {
-      margin-top: 25px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-
-    footer {
-      background-color: var(--bg-dark);
-      color: var(--text-light);
-      text-align: center;
-      padding: 15px;
-      font-size: 0.95em;
-      margin-top: 40px;
-    }
-
-    /* FLOATING WHATSAPP BUTTON */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25d366;
-      color: white;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 32px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      z-index: 999;
-      text-decoration: none;
-      transition: transform 0.3s ease;
-    }
-
-    .whatsapp-float:hover {
-      transform: scale(1.1);
-    }
-
-    @media (max-width: 768px) {
-      .hero-content h1 { font-size: 2em; }
-      .hero-content p { font-size: 1em; }
-      .section { margin: 20px; padding: 15px; }
+    @media (max-width:768px){
+      .section{padding:18px}
+      .gallery img{height:160px}
     }
   </style>
 </head>
-
 <body>
-  <header>
-    🌞 SPARKLE SOLAR – Power Your Future With Solar Energy!
-  </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="hero-overlay"></div>
-    <img src="images/Diwali.jpeg" class="active" alt="Solar Energy">
-    <img src="images/WhatsApp Image 2025-10-24 at 1.08.16 PM.jpeg" alt="">
+  <!-- Top bar -->
+  <header>🌞 SPARKLE SOLAR – Power Your Future With Solar Energy!</header>
+
+  <!-- Quick nav -->
+  <nav class="nav" aria-label="Primary">
+    <a href="#why">Why Us</a>
+    <a href="#services">Services</a>
+    <a href="#brands">Brands</a>
+    <a href="#projects">Projects</a>
+    <a href="#reach">Reach Us</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero">
+    <!-- slideshow images (softened; no black background) -->
+    <img src="images/Diwali.jpeg" class="active" alt="Solar rooftops and happy customers">
+    <img src="images/WhatsApp Image 2025-10-24 at 1.08.16 PM.jpeg" alt="Sparkle Solar installation">
     <img src="images/WhatsApp Image 2025-10-24 at 1.08.19 PM.jpeg" alt="">
     <img src="images/WhatsApp Image 2025-10-24 at 1.08.21 PM.jpeg" alt="">
     <img src="images/WhatsApp Image 2025-10-24 at 1.08.22 PM.jpeg" alt="">
@@ -291,117 +221,142 @@
     <img src="images/WhatsApp Image 2025-10-24 at 1.08.31 PM.jpeg" alt="">
 
     <div class="hero-content">
-      <h1>Harness the Power of the Sun ☀</h1>
-      <p>Switch to Solar & Enjoy ZERO Electricity Bills 🔋💡<br>Save Money • Save Energy • Save Future</p>
-      <a href="quote.html" class="button">⚡ Request a Quote</a>
+      <span class="hero-kicker">Founded 2023 • EPC & Trading</span>
+      <h1>Harness the Sun. Cut Bills. Power Your Future.</h1>
+      <p>On-Grid • Off-Grid • Hybrid | Residential • Commercial • Industrial</p>
+      <div class="cta-row">
+        <a class="button" href="#contact">⚡ Get a Free Solar Quote</a>
+        <a class="button secondary" href="https://wa.me/918888856841">💬 Chat on WhatsApp</a>
+      </div>
     </div>
   </section>
 
-  <!-- WHY CHOOSE US -->
-  <section class="section">
-    <h2>Why Choose Sparkle Solar?</h2>
-    <ul>
-      <li>High-Quality Solar System Installation & Setup</li>
-      <li>Customized Solar System Designs</li>
-      <li>On-Grid | Off-Grid | Hybrid Solar Systems</li>
-      <li>EMI & Loan Facility Available</li>
-      <li>Government Subsidy Support</li>
-    </ul>
+  <main class="wrap">
 
-    <div class="highlight">
-      <h3>⚡ Government Subsidy (PM Surya Ghar Muft Bijli Yojana)</h3>
-      <p>
-        💰 1KW – ₹30,000/-<br>
-        💰 2KW – ₹60,000/-<br>
-        💰 3KW to 10KW – ₹78,000/-
+    <!-- WHY CHOOSE US -->
+    <section id="why" class="section" aria-labelledby="why-title">
+      <h2 id="why-title">Why Choose Sparkle Solar?</h2>
+      <p class="lead">High-quality EPC installations, custom system design, and end-to-end support including EMI/loan facilitation and government subsidy assistance.</p>
+      <ul class="clean">
+        <li>Specialized Solar EPC across rooftop segments</li>
+        <li>Tailored designs: On-Grid, Off-Grid & Hybrid</li>
+        <li>Experienced team & quality components</li>
+        <li>Government subsidy guidance & documentation</li>
+      </ul>
+
+      <!-- Milestones from the presentation -->
+      <div class="stats" style="margin-top:16px">
+        <div class="stat">
+          1&nbsp;MW <small>Projects Completed (EPC)</small>
+        </div>
+        <div class="stat">
+          2&nbsp;MW <small>Trading Since Establishment</small>
+        </div>
+        <div class="stat">
+          Since&nbsp;2023 <small>Serving Solar Market</small>
+        </div>
+      </div>
+
+      <div class="pill-note">
+        <h3>⚡ PM Surya Ghar Muft Bijli Yojana – Subsidy</h3>
+        <p>1&nbsp;kW – ₹30,000 • 2&nbsp;kW – ₹60,000 • 3–10&nbsp;kW – ₹78,000</p>
+      </div>
+    </section>
+
+    <!-- ABOUT / VISION / MISSION from deck -->
+    <section class="section" aria-labelledby="about-title">
+      <h2 id="about-title">About Sparkle Solar</h2>
+      <p class="lead">
+        We provide end-to-end solar rooftop services—installation, maintenance, and utilization—for homes, businesses, and industries, enabling clean, renewable power and energy independence.
       </p>
-    </div>
-  </section>
+      <div class="pill-note" style="margin-top:14px">
+        <h3>Our Vision</h3>
+        <p>Deliver innovative, reliable, and transformative solar services that build a brighter, cleaner, more sustainable world.</p>
+      </div>
+      <div class="pill-note" style="margin-top:12px">
+        <h3>Our Mission</h3>
+        <p>Be a catalyst for positive change—redefining how energy is produced, consumed, and valued—so clean energy becomes a way of life.</p>
+      </div>
+      <!-- (About, Vision, Mission sourced from PDF p.2–5) -->
+    </section>
 
-  <!-- GALLERY SECTION -->
-  <section class="section">
-    <h2>Our Recent Projects 📸</h2>
-    <div class="gallery" id="gallery"></div>
-  </section>
+    <!-- SERVICES from deck -->
+    <section id="services" class="section" aria-labelledby="services-title">
+      <h2 id="services-title">Our Services</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>On-Grid Rooftop Solar</h3>
+          <p>Integrate solar with the existing grid for efficient generation and reduced bills, earning credits for surplus energy exported.</p>
+        </div>
+        <div class="card">
+          <h3>Hybrid Rooftop Solar</h3>
+          <p>Seamlessly switch between solar, grid, and stored power. Enjoy reliability, cost savings, and environmental benefits without compromise.</p>
+        </div>
+        <div class="card">
+          <h3>Off-Grid Rooftop Solar</h3>
+          <p>Achieve energy independence in remote areas or where grid access is unreliable with battery-backed systems for uninterrupted power.</p>
+        </div>
+        <div class="card">
+          <h3>Solar Street Lighting</h3>
+          <p>Advanced solar-powered LED street lights for safer, brighter public spaces with minimal energy costs and maintenance.</p>
+        </div>
+      </div>
+      <!-- (Services sourced from PDF p.6) -->
+    </section>
 
-  <!-- LIGHTBOX OVERLAY -->
-  <div class="lightbox" id="lightbox">
-    <img src="" alt="Enlarged Solar Project">
-  </div>
+    <!-- BRANDS from deck -->
+    <section id="brands" class="section" aria-labelledby="brands-title">
+      <h2 id="brands-title">Brand Associations</h2>
+      <p class="lead">We work with trusted panel and inverter brands to deliver performance and reliability.</p>
+      <div class="brand-grid" role="list">
+        <div class="brand" role="listitem">Panasonic</div>
+        <div class="brand" role="listitem">Growatt</div>
+        <div class="brand" role="listitem">Adani</div>
+        <div class="brand" role="listitem">Trina Solar</div>
+        <div class="brand" role="listitem">Longi</div>
+        <div class="brand" role="listitem">Vikram Solar</div>
+        <div class="brand" role="listitem">Peimar</div>
+        <div class="brand" role="listitem">KSolare</div>
+        <div class="brand" role="listitem">ABB (FIMAR)</div>
+        <div class="brand" role="listitem">SolarEdge</div>
+        <div class="brand" role="listitem">Havells</div>
+        <div class="brand" role="listitem">DEYE / EVVO</div>
+      </div>
+      <!-- (Brands sourced from PDF p.7–8) -->
+    </section>
 
-  <!-- REACH US -->
-  <section class="section">
-    <h2>Reach Us</h2>
-    <p>📍 Kharbi, Nagpur</p>
-    <div class="map-container">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3748.932965874958!2d79.13110707519275!3d21.139118782161784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0866c5c7301%3A0x7e25dfd8a2f902cc!2sSparkle%20Solar!5e0!3m2!1sen!2sin!4v1730045561002!5m2!1sen!2sin"
-        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
-  </section>
+    <!-- PROJECTS -->
+    <section id="projects" class="section" aria-labelledby="projects-title">
+      <h2 id="projects-title">Our Recent Projects 📸</h2>
+      <div class="gallery" id="gallery"></div>
+      <!-- (Reference to installation photos in PDF p.9) -->
+    </section>
 
-  <!-- CONTACT -->
-  <section class="contact">
-    <h3>📞 Contact Us Today for a FREE Solar Quote</h3>
-    <p><strong>Someshwar Badlu</strong></p>
-    <p>📱 <a href="tel:+918888856841">8888856841</a></p>
-    <p>📧 <a href="mailto:sparklesolarr@gmail.com">sparklesolarr@gmail.com</a></p>
-    <a class="button" href="https://wa.me/918888856841">💬 Chat on WhatsApp</a>
-  </section>
+    <!-- REACH US -->
+    <section id="reach" class="section" aria-labelledby="reach-title">
+      <h2 id="reach-title">Reach Us</h2>
+      <p>📍 Plot No 44, Jija Mata Nagar 2, Kharbi, Nagpur – 440035</p>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3748.932965874958!2d79.13110707519275!3d21.139118782161784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0866c5c7301%3A0x7e25dfd8a2f902cc!2sSparkle%20Solar!5e0!3m2!1sen!2sin!4v1730045561002!5m2!1sen!2sin"
+          width="100%" height="400" style="border:0" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </section>
 
-  <footer>
-    © 2025 Sparkle Solar. Save Money. Save Energy. Save Future.
-  </footer>
+    <!-- CONTACT -->
+    <section id="contact" class="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title" style="margin-bottom:8px">📞 Contact Us for a FREE Solar Quote</h2>
+      <p><strong>Someshwar Badlu</strong></p>
+      <p>📱 <a href="tel:+918888856841">+91 88888 56841</a> &nbsp;|&nbsp; 📧 <a href="mailto:sparklesolarr@gmail.com">sparklesolarr@gmail.com</a></p>
+      <div class="cta-row" style="justify-content:center;margin-top:10px">
+        <a class="button" href="#services">Explore Services</a>
+        <a class="button secondary" href="quote.html">⚡ Request a Quote</a>
+        <a class="button" href="https://wa.me/918888856841">💬 WhatsApp</a>
+      </div>
+    </section>
 
-  <a href="https://wa.me/918888856841" class="whatsapp-float" title="Chat with us on WhatsApp">
-    💬
-  </a>
+  </main>
 
-  <script>
-    // HERO SLIDESHOW
-    const slides = document.querySelectorAll(".hero img");
-    let index = 0;
-    setInterval(() => {
-      slides[index].classList.remove("active");
-      index = (index + 1) % slides.length;
-      slides[index].classList.add("active");
-    }, 3000);
+  <footer>© 2025 Sparkle Solar — Save Money. Save Energy. Save Future.</footer>
 
-    // GALLERY IMAGES
-    const galleryImages = [
-      "Diwali.jpeg",
-      "WhatsApp Image 2025-10-24 at 1.08.16 PM.jpeg",
-      "WhatsApp Image 2025-10-24 at 1.08.19 PM.jpeg",
-      "WhatsApp Image 2025-10-24 at 1.08.21 PM.jpeg",
-      "WhatsApp Image 2025-10-24 at 1.08.22 PM.jpeg",
-      "WhatsApp Image 2025-10-24 at 1.08.23 PM.jpeg",
-      "WhatsApp Image 2025-10-24 at 1.08.24 PM.jpeg",
-      "WhatsApp Image 2025-10-24 at 1.08.25 PM.jpeg",
-      "WhatsApp Image 2025-10-24 at 1.08.26 PM.jpeg",
-      "WhatsApp Image 2025-10-24 at 1.08.27 PM.jpeg",
-      "WhatsApp Image 2025-10-24 at 1.08.28 PM.jpeg",
-      "WhatsApp Image 2025-10-24 at 1.08.30 PM.jpeg",
-      "WhatsApp Image 2025-10-24 at 1.08.31 PM.jpeg"
-    ];
-
-    const gallery = document.getElementById("gallery");
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = lightbox.querySelector("img");
-
-    galleryImages.forEach(img => {
-      const image = document.createElement("img");
-      image.src = `images/${img}`;
-      image.alt = "Sparkle Solar Project";
-      image.addEventListener("click", () => {
-        lightbox.classList.add("active");
-        lightboxImg.src = image.src;
-      });
-      gallery.appendChild(image);
-    });
-
-    // CLOSE LIGHTBOX ON CLICK
-    lightbox.addEventListener("click", () => {
-      lightbox.classList.remove("active");
-    });
-  </script>
-</body>
-</html>
+  <!-- WhatsApp Floating -->
+  <a href="https://wa.me/918888856841" class="whatsapp-float" aria-l
