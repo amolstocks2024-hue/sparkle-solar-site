@@ -6,103 +6,208 @@
   <title>SPARKLE SOLAR | Power Your Future With Solar Energy</title>
 
   <style>
-    body {
+    :root {
+      --primary: #ffcc00;
+      --accent: #f5b301;
+      --text-dark: #333;
+      --text-light: #fff;
+      --bg-light: #fafafa;
+      --bg-dark: #222;
+    }
+
+    * {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff;
-      color: #333;
-      line-height: 1.6;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.7;
     }
 
     header {
-      background: #ffcc00;
-      color: #000;
-      padding: 10px 20px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: var(--text-dark);
       text-align: center;
-      font-weight: bold;
-      font-size: 1.4em;
-      letter-spacing: 1px;
+      padding: 18px 10px;
+      font-size: 1.6em;
+      font-weight: 600;
     }
 
+    /* HERO SECTION (FADE SLIDESHOW) */
     .hero {
-      background: url("c1b39ff7-de1f-49d0-bb58-aa0bd9fe00cc.jpeg") center/cover no-repeat;
-      height: 85vh;
+      position: relative;
+      height: 90vh;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-      flex-direction: column;
       text-align: center;
+      color: var(--text-light);
     }
 
-    .hero h1 {
-      font-size: 2.8em;
-      margin: 0;
+    .hero img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
 
-    .hero p {
-      font-size: 1.2em;
-      max-width: 600px;
+    .hero img.active {
+      opacity: 1;
     }
 
-    .content {
-      padding: 30px 15px;
-      max-width: 900px;
-      margin: auto;
+    .hero-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 1;
     }
 
-    .content h2 {
-      color: #e89f00;
-      border-left: 5px solid #ffcc00;
-      padding-left: 10px;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 3em;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #fffbe6;
+    }
+
+    .hero-content p {
+      font-size: 1.3em;
+      color: #f0f0f0;
+    }
+
+    /* SECTION STYLES */
+    .section {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px 30px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .section h2 {
+      color: var(--accent);
+      border-left: 6px solid var(--primary);
+      padding-left: 12px;
+      margin-bottom: 20px;
+      font-size: 1.8em;
     }
 
     ul {
-      list-style-type: "☀ ";
-      margin-left: 20px;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      padding: 6px 0;
+      font-size: 1.1em;
+      position: relative;
+      padding-left: 25px;
+    }
+
+    ul li::before {
+      content: "☀";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
     }
 
     .highlight {
       background-color: #fffbea;
-      border-left: 4px solid #ffd700;
-      padding: 10px;
-      margin: 20px 0;
+      border-left: 5px solid var(--primary);
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .highlight h3 {
+      color: var(--accent);
+      margin-bottom: 10px;
     }
 
     .contact {
-      background-color: #fef3c7;
-      padding: 20px;
       text-align: center;
-      border-top: 3px solid #ffcc00;
+      background: linear-gradient(90deg, #fff3b0, #ffe169);
+      padding: 40px 20px;
+      border-top: 3px solid var(--accent);
+      border-radius: 10px;
+      margin: 50px auto;
+      max-width: 1000px;
     }
 
     .contact h3 {
-      color: #e89f00;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      font-size: 1.5em;
+    }
+
+    .contact p {
+      margin: 5px 0;
+      font-size: 1.1em;
     }
 
     a.button {
-      background-color: #ffcc00;
-      color: #000;
-      padding: 10px 20px;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
       display: inline-block;
-      margin-top: 10px;
+      margin-top: 15px;
+      padding: 12px 25px;
+      background: var(--accent);
+      color: #000;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    a.button:hover {
+      background: #f8d000;
+      transform: translateY(-2px);
+    }
+
+    /* GOOGLE MAP SECTION */
+    .map-container {
+      margin-top: 25px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
     footer {
-      background-color: #222;
-      color: #eee;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
       text-align: center;
-      padding: 10px;
-      font-size: 0.9em;
+      padding: 15px;
+      font-size: 0.95em;
+      margin-top: 40px;
     }
 
-    @media (max-width: 600px) {
-      .hero h1 {
+    @media (max-width: 768px) {
+      .hero-content h1 {
         font-size: 2em;
+      }
+
+      .hero-content p {
+        font-size: 1em;
+      }
+
+      .section {
+        margin: 20px;
+        padding: 15px;
       }
     }
   </style>
@@ -113,13 +218,32 @@
     🌞 SPARKLE SOLAR – Power Your Future With Solar Energy!
   </header>
 
+  <!-- HERO / SLIDESHOW -->
   <section class="hero">
-    <h1>Happy Diwali ✨</h1>
-    <p>Wishing you and your loved ones a sparkling and joyous Diwali!  
-      Switch to Solar & Enjoy ZERO Electricity Bills 🔋💡</p>
+    <div class="hero-overlay"></div>
+
+    <img src="images/Diwali.jpeg" class="active" alt="Solar Energy">
+    <img src="images/WhatsApp Image 2025-10-24 at 1.08.16 PM.jpeg" alt="">
+    <img src="images/WhatsApp Image 2025-10-24 at 1.08.19 PM.jpeg" alt="">
+    <img src="images/WhatsApp Image 2025-10-24 at 1.08.21 PM.jpeg" alt="">
+    <img src="images/WhatsApp Image 2025-10-24 at 1.08.22 PM.jpeg" alt="">
+    <img src="images/WhatsApp Image 2025-10-24 at 1.08.22 PM (1).jpeg" alt="">
+    <img src="images/WhatsApp Image 2025-10-24 at 1.08.23 PM.jpeg" alt="">
+    <img src="images/WhatsApp Image 2025-10-24 at 1.08.23 PM (1).jpeg" alt="">
+    <img src="images/WhatsApp Image 2025-10-24 at 1.08.23 PM (2).jpeg" alt="">
+    <img src="images/WhatsApp Image 2025-10-24 at 1.08.24 PM.jpeg" alt="">
+    <img src="images/WhatsApp Image 2025-10-24 at 1.08.31 PM.jpeg" alt="">
+
+    <div class="hero-content">
+      <h1>Harness the Power of the Sun ☀</h1>
+      <p>Switch to Solar & Enjoy ZERO Electricity Bills 🔋💡<br>
+      Save Money • Save Energy • Save Future</p>
+      <a href="quote.html" class="button">⚡ Request a Quote</a>
+    </div>
   </section>
 
-  <section class="content">
+  <!-- WHY CHOOSE US -->
+  <section class="section">
     <h2>Why Choose Sparkle Solar?</h2>
     <ul>
       <li>High-Quality Solar System Installation & Setup</li>
@@ -137,29 +261,42 @@
         💰 3KW to 10KW – ₹78,000/-
       </p>
     </div>
-
-    <h2>We Deal In</h2>
-    <ul>
-      <li>Residential Homes</li>
-      <li>Commercial Buildings</li>
-      <li>Industrial Plants</li>
-      <li>Hotels & Resorts</li>
-      <li>Hospitals, Schools & Colleges</li>
-    </ul>
-
-    <h2>Our Location</h2>
-    <p>📍 Kharbi, Nagpur</p>
   </section>
 
+  <!-- REACH US -->
+  <section class="section">
+    <h2>Reach Us</h2>
+    <p>📍 Kharbi, Nagpur</p>
+    <div class="map-container">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3748.932965874958!2d79.13110707519275!3d21.139118782161784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0866c5c7301%3A0x7e25dfd8a2f902cc!2sSparkle%20Solar!5e0!3m2!1sen!2sin!4v1730045561002!5m2!1sen!2sin"
+        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
   <section class="contact">
     <h3>📞 Contact Us Today for a FREE Solar Quote</h3>
     <p><strong>Someshwar Badlu</strong></p>
-    <p>📱 <a href="tel:+918888856841">8888856841</a> | 📧 <a href="mailto:sparklesolarr@gmail.com">sparklesolarr@gmail.com</a></p>
+    <p>📱 <a href="tel:+918888856841">8888856841</a></p>
+    <p>📧 <a href="mailto:sparklesolarr@gmail.com">sparklesolarr@gmail.com</a></p>
     <a class="button" href="https://wa.me/918888856841">💬 Chat on WhatsApp</a>
   </section>
 
   <footer>
     © 2025 Sparkle Solar. Save Money. Save Energy. Save Future.
   </footer>
+
+  <script>
+    // Fade slideshow
+    const slides = document.querySelectorAll(".hero img");
+    let index = 0;
+    setInterval(() => {
+      slides[index].classList.remove("active");
+      index = (index + 1) % slides.length;
+      slides[index].classList.add("active");
+    }, 1500);
+  </script>
 </body>
 </html>
