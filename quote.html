@@ -4,22 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Get a FREE Solar Quote | Sparkle Solar</title>
-  <meta name="description" content="Book a free solar consultation in Nagpur. We analyze your bill, size your system, and help you claim MNRE subsidy." />
-  <link rel="canonical" href="https://amolstocks2024-hue.github.io/sparkle-solar-site/quote.html" />
-
-  <!-- OG/Twitter -->
-  <meta property="og:title" content="Free Solar Quote — Sparkle Solar"/>
-  <meta property="og:description" content="Quick consultation • Savings estimate • Subsidy assistance"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:image" content="images/icon-512.png"/>
-  <meta property="og:url" content="https://amolstocks2024-hue.github.io/sparkle-solar-site/quote.html"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-
   <style>
     :root{
       --bg:#0b122b;
@@ -35,10 +20,29 @@
     }
     .card{
       width:100%; max-width:680px; background:var(--card); border-radius:22px;
-      padding:24px; box-shadow:0 20px 60px rgba(0,0,0,.30); border:2px solid #eef0f4;
+      padding:24px; box-shadow:0 20px 60px rgba(0,0,0,.30);
+      border:2px solid #eef0f4; position:relative;
     }
+    /* Floating close (X) */
+    .close-x{
+      position:fixed; top:16px; right:16px; z-index:50;
+      width:44px; height:44px; border-radius:12px; border:0; cursor:pointer;
+      background:rgba(255,255,255,.9); color:#111; font-size:22px; font-weight:900; line-height:1;
+      box-shadow:0 6px 16px rgba(0,0,0,.25);
+    }
+    .close-x:hover{ background:#fff }
+    .close-x:focus{ outline:3px solid rgba(124,58,237,.5) }
+
     h1{ margin:0 0 4px; font-size:1.8rem; color:var(--text) }
     .sub{ color:var(--muted); margin-bottom:14px }
+    .sub .big-number{
+      font-weight:900; font-size:1.25em;
+      background:linear-gradient(90deg,#4338ca,#0ea5e9,#14b8a6,#4338ca);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      background-size:300% 100%; animation:fancy 7s linear infinite;
+      white-space:nowrap;
+    }
+    @keyframes fancy{ 0%{background-position:0% 0} 50%{background-position:100% 0} 100%{background-position:0% 0} }
 
     label{ display:block; font-weight:700; color:var(--text); margin:12px 0 6px }
     .req{ color:#e11d48; font-weight:800 }
@@ -58,7 +62,9 @@
       border:1.6px solid #e5e7eb; background:#fff; color:#1f2937; font-weight:700; font-size:.95rem;
       transition: all .15s ease;
     }
-    .chips input:checked + .chip, .chip:hover{ border-color:var(--accent); box-shadow:0 0 0 3px rgba(124,58,237,.12) }
+    .chips input:checked + .chip, .chip:hover{
+      border-color:var(--accent); box-shadow:0 0 0 3px rgba(124,58,237,.12)
+    }
 
     .agree{ display:flex; align-items:flex-start; gap:10px; margin-top:14px; color:#6b7280 }
     .agree input{ margin-top:3px }
@@ -76,24 +82,27 @@
 </head>
 <body>
 
+  <!-- Close button -->
+  <button class="close-x" aria-label="Close and go back" id="closeQuote">✕</button>
+
   <form class="card" id="quoteForm" autocomplete="on">
     <h1>Book a FREE Solar Consultation</h1>
-    <div class="sub">And save up to ₹78,000 with subsidy</div>
+    <div class="sub">And save up to <span class="big-number">₹78,000</span> with subsidy</div>
 
     <div class="row">
       <div>
         <label for="q_full_name">Full name <span class="req">*</span></label>
-        <input type="text" id="q_full_name" name="full_name" placeholder="Enter Full Name" autocomplete="name" required>
+        <input type="text" id="q_full_name" name="full_name" placeholder="Enter Full Name" required>
       </div>
 
       <div>
         <label for="q_whatsapp">WhatsApp number <span class="req">*</span></label>
-        <input type="tel" id="q_whatsapp" name="whatsapp" inputmode="tel" placeholder="Enter WhatsApp Number" autocomplete="tel" pattern="[0-9+\-\s]{10,}" required>
+        <input type="tel" id="q_whatsapp" name="whatsapp" inputmode="tel" placeholder="Enter WhatsApp Number" required>
       </div>
 
       <div>
         <label for="q_pincode">Pin code <span class="req">*</span></label>
-        <input type="text" id="q_pincode" name="pincode" inputmode="numeric" pattern="[0-9]{6}" placeholder="Enter Pincode" autocomplete="postal-code" required>
+        <input type="text" id="q_pincode" name="pincode" inputmode="numeric" pattern="[0-9]{6}" placeholder="Enter Pincode" required>
       </div>
 
       <div class="bill-block">
@@ -117,6 +126,15 @@
   </form>
 
   <script>
+    // Close behavior: prefer history.back(); fallback to homepage
+    document.getElementById('closeQuote').addEventListener('click', ()=>{
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = 'index.html#contact';
+      }
+    });
+
     // Prefill from index GET params (if present)
     const params = new URLSearchParams(location.search);
     if(params.size){
