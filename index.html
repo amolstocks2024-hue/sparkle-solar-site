@@ -1,196 +1,685 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Get a FREE Solar Quote | Sparkle Solar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#6366f1" />
+  <link rel="apple-touch-icon" href="images/icon-192.png" />
+  <link rel="manifest" href="manifest.json" />
+
+  <title>SPARKLE SOLAR | Power Your Future With Solar Energy</title>
+  <meta name="description" content="Rooftop solar in Nagpur — on-grid, off-grid & hybrid. Book a free consultation and save with MNRE subsidy. Expert installation, paperwork, and support." />
+  <link rel="canonical" href="https://amolstocks2024-hue.github.io/sparkle-solar-site/" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Sparkle Solar — Power Your Future With Solar Energy" />
+  <meta property="og:description" content="Free consultation • Subsidy support • Residential & commercial • Nagpur and nearby." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/icon-512.png" />
+  <meta property="og:url" content="https://amolstocks2024-hue.github.io/sparkle-solar-site/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Performance: fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
   <style>
     :root{
-      --bg:#0b122b;
-      --card:#ffffff;
-      --text:#1e2330;
-      --muted:#6b7280;
-      --accent:#7c3aed;
+      /* Calmer tri-palette */
+      --indigo:#6366f1;        /* primary accent */
+      --indigo-soft:#eef2ff;   /* bg tint */
+      --teal:#14b8a6;          /* secondary accent */
+      --mint:#e6fffb;          /* light teal tint */
+      --amber:#f59e0b;         /* subtle highlight only */
+      --text-dark:#1f2937; --text-darker:#0b1220;
+      --bg:#fafbff; --card:#ffffff;
+      --shadow:0 6px 18px rgba(0,0,0,.06);
+      --radius:16px; --maxw:1150px;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family:"Poppins",sans-serif; background:var(--bg);
-      min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;
-    }
-    .card{
-      width:100%; max-width:680px; background:var(--card); border-radius:22px;
-      padding:24px; box-shadow:0 20px 60px rgba(0,0,0,.30);
-      border:2px solid #eef0f4; position:relative;
-    }
-    /* Floating close (X) */
-    .close-x{
-      position:fixed; top:16px; right:16px; z-index:50;
-      width:44px; height:44px; border-radius:12px; border:0; cursor:pointer;
-      background:rgba(255,255,255,.9); color:#111; font-size:22px; font-weight:900; line-height:1;
-      box-shadow:0 6px 16px rgba(0,0,0,.25);
-    }
-    .close-x:hover{ background:#fff }
-    .close-x:focus{ outline:3px solid rgba(124,58,237,.5) }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+    body{font-family:"Poppins",sans-serif;background:var(--bg);color:var(--text-dark);line-height:1.6;overflow-x:hidden}
 
-    h1{ margin:0 0 4px; font-size:1.8rem; color:var(--text) }
-    .sub{ color:var(--muted); margin-bottom:14px }
-    .sub .big-number{
-      font-weight:900; font-size:1.25em;
+    /* ====== SCROLLING RIBBON / TICKER ====== */
+    header.ribbon{
+      background:linear-gradient(90deg,#eef2ff,#e0f7f5,#fff7e6);
+      color:#222;border-bottom:3px solid rgba(99,102,241,.25);
+      position:sticky; top:0; z-index:1000; overflow:hidden; padding:0;
+    }
+    .ticker{white-space:nowrap}
+    .ticker__track{display:inline-block;padding-left:100%;animation:scrollTicker 60s linear infinite}
+    .ticker__item{display:inline-block;padding:12px 32px;font-weight:900;letter-spacing:.2px;font-size:clamp(1.05rem,2.6vw,1.6rem);color:#2b2f44;text-shadow:0 1px 0 rgba(255,255,255,.7)}
+    .ticker__sr{position:absolute;left:-9999px}
+    @keyframes scrollTicker{from{transform:translateX(0)} to{transform:translateX(-100%)}}
+    @media (prefers-reduced-motion: reduce){ .ticker__track{animation:none; padding-left:0} }
+
+    /* ====== BRAND HEADER (logo left, menu centered) ====== */
+    .brandbar{
+      position:sticky;top:48px;z-index:999;
+      background:rgba(250,251,255,.9);backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(99,102,241,.25)
+    }
+    .brandwrap{
+      max-width:var(--maxw);margin:0 auto;padding:10px 16px;
+      display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px
+    }
+    /* Brand logo — bigger + bolder */
+    .logo{display:inline-flex;align-items:center;gap:14px;text-decoration:none}
+    .logo img{
+      width:72px; height:72px; border-radius:14px;
+      box-shadow:0 6px 16px rgba(0,0,0,.08);
+    }
+    .logo span{
+      font-weight:900; letter-spacing:.5px;
+      font-size:clamp(1.4rem, 3vw, 2rem);
+      color:#1d215a;
+      text-shadow:0 1px 0 rgba(255,255,255,.6);
+    }
+    .brandnav{justify-self:center;display:flex;gap:10px;flex-wrap:wrap}
+    .brandnav a{
+      padding:8px 14px;border-radius:999px;font-weight:700;
+      color:#243b53;text-decoration:none;background:rgba(99,102,241,.10);
+      border:2px solid rgba(99,102,241,.15);transition:transform .2s,background .2s,color .2s,border-color .2s, box-shadow .2s
+    }
+    .brandnav a:hover{transform:translateY(-2px);background:rgba(99,102,241,.18)}
+    .brandnav a.active{
+      background:linear-gradient(90deg,var(--indigo),var(--teal));
+      color:#fff;border-color:transparent;
+      box-shadow:0 8px 20px rgba(20,184,166,.25)
+    }
+    .brandnav .pill{
+      background:linear-gradient(90deg,var(--indigo),var(--teal));
+      border-color:transparent;color:#fff
+    }
+
+    /* ====== HERO (70/30) ====== */
+    .hero-split{display:grid;grid-template-columns:7fr 3fr;min-height:80vh;background:var(--bg);padding:0 10px}
+    .hero-left{
+      position:relative;overflow:hidden;
+      border-top-left-radius:18px;border-bottom-left-radius:18px;
+      /* pastel tri-color gradient */
+      background:linear-gradient(-45deg,#eef2ff,#e0f7f5,#fff7e6);
+      background-size:400% 400%;
+      animation:moveGradient 16s ease infinite;
+    }
+    .hero-left::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.45);pointer-events:none}
+    @keyframes moveGradient{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+    @media (prefers-reduced-motion: reduce){ .hero-left{animation:none} }
+
+    .hero-text-block{position:absolute;top:10%;left:50%;transform:translateX(-50%);text-align:center;width:min(92%,820px);z-index:1}
+    .hero-text-block h1{
+      font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#111827;line-height:1.25;text-shadow:0 2px 4px rgba(255,255,255,.85)
+    }
+    .hero-text-block p{margin-top:10px;font-size:clamp(.95rem,1.5vw,1.15rem);color:#374151}
+    .cta-row{margin-top:18px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+    .button{
+      display:inline-block;padding:12px 20px;border-radius:12px;font-weight:800;text-decoration:none;box-shadow:var(--shadow);border:0;
+      background:linear-gradient(90deg,var(--indigo),var(--teal));color:#fff;transition:transform .2s
+    }
+    .button.white{background:#fff;border:2px solid rgba(99,102,241,.25);color:#1f2937}
+    .button:hover{transform:translateY(-2px)}
+
+    .hero-right{
+      display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.95);
+      border-top-right-radius:18px;border-bottom-right-radius:18px;padding:1rem;z-index:1
+    }
+    .quote-card{width:100%;max-width:520px;background:rgba(255,255,255,.98);border-radius:18px;padding:30px 24px;border:2px solid rgba(99,102,241,.18);box-shadow:0 6px 18px rgba(99,102,241,.12)}
+    .quote-card h2{font-size:1.35rem;font-weight:800;color:#111827}
+    .quote-card .muted{color:#6b7280;margin:6px 0 14px}
+    /* Big-number highlight inside the muted line */
+    .muted .big-number{
+      font-weight:900; font-size:1.35em; color:#111827;
       background:linear-gradient(90deg,#4338ca,#0ea5e9,#14b8a6,#4338ca);
       -webkit-background-clip:text; background-clip:text; color:transparent;
-      background-size:300% 100%; animation:fancy 7s linear infinite;
+      background-size:300% 100%; animation:fancyShift 7s linear infinite;
       white-space:nowrap;
     }
-    @keyframes fancy{ 0%{background-position:0% 0} 50%{background-position:100% 0} 100%{background-position:0% 0} }
 
-    label{ display:block; font-weight:700; color:var(--text); margin:12px 0 6px }
-    .req{ color:#e11d48; font-weight:800 }
+    .quote-card label{display:block;font-weight:700;margin:10px 0 6px;color:#1f2937}
+    .quote-card input[type="text"],.quote-card input[type="tel"]{width:100%;border:1.8px solid #e5e7eb;border-radius:10px;padding:11px 12px;font-size:1rem;transition:.2s}
+    .quote-card input:focus{border-color:var(--indigo);box-shadow:0 0 0 3px rgba(99,102,241,.18)}
+    .chip-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .chip-group input{display:none}
+    .chip{display:inline-block;padding:9px 14px;border-radius:12px;cursor:pointer;border:2px solid #e5e7eb;background:#fff;font-weight:700;font-size:.9rem;transition:.2s}
+    .chip-group input:checked + .chip{background:#eef2ff;border-color:var(--indigo);transform:scale(1.04)}
+    .cta-primary{margin-top:16px;width:100%;padding:14px;border-radius:16px;border:0;cursor:pointer;background:linear-gradient(90deg,var(--indigo),var(--teal));color:#fff;font-weight:800;box-shadow:0 8px 20px rgba(99,102,241,.18)}
 
-    input[type="text"], input[type="tel"]{
-      width:100%; border:1.6px solid #e5e7eb; outline:0; border-radius:10px;
-      padding:12px 14px; font-size:1rem; transition:border-color .2s ease, box-shadow .2s ease;
+    .wrap{max-width:var(--maxw);margin:28px auto;padding:0 18px}
+    .section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px;margin-bottom:22px}
+
+    .section-head{text-align:center;margin-bottom:16px;position:relative}
+    .section-head h2{font-size:1.7rem;color:#1f2937}
+    .section-accent{display:block;width:120px;height:6px;margin:0 auto 10px;border-radius:999px;background:linear-gradient(90deg,#eef2ff,#a5f3fc,#fde68a);box-shadow:0 6px 20px rgba(99,102,241,.20);position:relative;overflow:hidden}
+    .section-accent::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);transform:translateX(-100%);animation:accentShine 2.2s linear infinite}
+    @keyframes accentShine{to{transform:translateX(100%)}}
+
+    .why-point,.service-card,.number-step,.kpi-card{opacity:0;transform:translateY(16px);transition:.6s ease-out}
+    .in-view{opacity:1!important;transform:translateY(0)!important}
+
+    .why-points{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+    .why-point{background:#fff;border:2px solid #eef2ff;border-radius:14px;box-shadow:var(--shadow);padding:14px}
+
+    .service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+    .service-card{background:#fff;border:2px solid #eef2ff;border-radius:14px;box-shadow:var(--shadow);padding:16px}
+    .service-card:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(99,102,241,.15)}
+
+    /* KPIs row */
+    .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+    .kpi-card{background:#fff;border:2px solid #eef2ff;border-radius:14px;padding:14px;text-align:center}
+    .kpi-card b{display:block;font-size:1.6rem}
+    .kpi-card.link{cursor:pointer; text-decoration:none; color:inherit; display:block}
+
+    /* Fancy animated heading for calculator */
+    .fancy-title{
+      margin-top:16px;
+      font-weight:900;
+      font-size:clamp(1.15rem,2.2vw,1.35rem);
+      background:linear-gradient(90deg,#4338ca,#0ea5e9,#14b8a6,#4338ca);
+      background-size:300% 100%;
+      -webkit-background-clip:text;background-clip:text;
+      color:transparent;
+      animation:fancyShift 7s linear infinite;
+      letter-spacing:.2px;
     }
-    input:focus{ border-color:var(--accent); box-shadow:0 0 0 3px rgba(124,58,237,.15) }
-
-    .row{ display:grid; grid-template-columns: 1fr; gap:12px }
-    .bill-block{ margin-top:8px }
-    .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px }
-    .chips input{ display:none }
-    .chip{
-      display:inline-block; padding:10px 14px; border-radius:12px; cursor:pointer;
-      border:1.6px solid #e5e7eb; background:#fff; color:#1f2937; font-weight:700; font-size:.95rem;
-      transition: all .15s ease;
-    }
-    .chips input:checked + .chip, .chip:hover{
-      border-color:var(--accent); box-shadow:0 0 0 3px rgba(124,58,237,.12)
+    @keyframes fancyShift{
+      0%{background-position:0% 0}
+      50%{background-position:100% 0}
+      100%{background-position:0% 0}
     }
 
-    .agree{ display:flex; align-items:flex-start; gap:10px; margin-top:14px; color:#6b7280 }
-    .agree input{ margin-top:3px }
-    .agree a{ color:#1e40af; text-decoration:underline }
+    /* Inline calculator in hero */
+    .calc-inline{margin-top:10px}
+    .calc{max-width:760px;margin:0 auto;text-align:center}
+    .calc .row{display:flex;gap:10px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+    .calc input[type="number"]{width:260px;border:1.8px solid #e5e7eb;border-radius:10px;padding:10px 12px;font-size:1rem}
+    .calc input[type="number"]:focus{border-color:var(--indigo);box-shadow:0 0 0 3px rgba(99,102,241,.18)}
 
-    .cta{
-      margin-top:16px; width:100%; padding:14px 18px; border-radius:16px; border:0; cursor:pointer;
-      background:#0b122b; color:#fff; font-weight:800; font-size:1.05rem;
-      transition: transform .15s ease, box-shadow .15s ease;
+    /* Results grid */
+    .calc-out .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:14px}
+    .cardline{background:#fff;border:2px solid #eef2ff;border-radius:12px;padding:12px;text-align:left}
+    .cardline .k{font-weight:800;color:#1f2937;display:block}
+    .cardline .v{display:block;margin-top:6px;font-weight:800;color:#111827}
+    .cardline .v.flash{
+      animation:flashHi 900ms ease;
+      background-image:linear-gradient(90deg,#fff,#fff7e6,#fff);
+      background-size:200% 100%;
     }
-    .cta:hover{ transform:translateY(-1px); box-shadow:0 10px 18px rgba(11,18,43,.25) }
+    @keyframes flashHi{
+      0%{background-position:100% 0}
+      100%{background-position:0% 0}
+    }
 
-    @media (min-width:720px){ .row-2{ grid-template-columns:1fr 1fr } }
+    /* Process steps */
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+    .number-step{background:#fff;border:2px solid #eef2ff;border-radius:14px;padding:16px}
+    .number-step .n{display:inline-flex;width:32px;height:32px;border-radius:50%;align-items:center;justify-content:center;background:var(--indigo);color:#fff;font-weight:800;margin-bottom:8px}
+
+    /* Gallery + Lightbox */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:12px;cursor:pointer;box-shadow:var(--shadow);transition:transform .2s}
+    .gallery img:hover{transform:scale(1.03)}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;z-index:999}
+    .lightbox.active{opacity:1;pointer-events:auto}
+    .lightbox img{max-width:90%;max-height:85%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+    .lightbox .close{position:absolute;top:20px;right:28px;font-size:34px;color:#fff;cursor:pointer;font-weight:900;line-height:1}
+    .lightbox .close:hover{color:var(--indigo)}
+    /* Close button inside lightbox */
+    .lightbox .close{
+      position:absolute;top:20px;right:28px;font-size:34px;color:#fff;cursor:pointer;font-weight:900;line-height:1;
+      padding:6px 10px;border-radius:10px;background:rgba(0,0,0,.35)
+    }
+    .lightbox .close:hover{color:#fff;background:rgba(0,0,0,.55)}
+    .lightbox .close:focus{outline:3px solid rgba(99,102,241,.6);outline-offset:2px}
+
+    /* Testimonials (snap slider) */
+    .snap{display:flex;gap:14px;overflow:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+    .snap .t{min-width:280px;scroll-snap-align:center;background:#fff;border:2px solid #eef2ff;border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+    .snap .t div{margin-top:8px;color:#6b7280;font-weight:700}
+    .snap::-webkit-scrollbar{display:none}
+
+    /* Contact */
+    /* Contact section card */
+    .contact{width:60%;margin:50px auto;text-align:center;background:#fff;border:3px solid #eef2ff;border-radius:20px;padding:40px 25px;box-shadow:0 10px 28px rgba(99,102,241,.12)}
+    .contact a{color:#1f2937;text-decoration:none;font-weight:700}
+    .contact a:hover{text-decoration:underline}
+
+    footer{text-align:center;padding:14px;background:linear-gradient(90deg,#eef2ff,#e0f7f5);border-top:2px solid rgba(99,102,241,.18);color:#1f2937}
+
+    /* Mobile sticky CTA */
+    .mobile-cta{position:fixed;bottom:0;left:0;right:0;display:none;gap:6px;padding:8px;background:#fff;border-top:1px solid #eef2ff;z-index:999}
+    .mobile-cta a{flex:1;text-align:center;padding:12px;border-radius:10px;text-decoration:none;font-weight:800;color:#1f2937;background:#fff;border:2px solid rgba(99,102,241,.18)}
+    .mobile-cta .primary{background:linear-gradient(90deg,var(--indigo),var(--teal));color:#fff;border-color:transparent}
+
+    .whatsapp-float{position:fixed;bottom:78px;right:18px;background:#25d366;color:#fff;border-radius:50%;width:60px;height:60px;display:flex;justify-content:center;align-items:center;font-size:30px;text-decoration:none;box-shadow:0 10px 20px rgba(0,0,0,.15);transition:transform .2s}
+    .whatsapp-float:hover{transform:scale(1.05)}
+
+    @media (max-width:992px){
+      .hero-split{grid-template-columns:1fr}
+      .hero-left{border-radius:18px 18px 0 0;min-height:64vh}
+      .hero-right{border-radius:0 0 18px 18px}
+      .hero-text-block{position:relative;top:auto;left:auto;transform:none;padding:20px 0}
+      .contact{width:90%;padding:30px 20px}
+    }
+    @media (max-width:768px){ .mobile-cta{display:flex} .whatsapp-float{bottom:140px} }
+    @media (max-width:600px){
+      .quote-card{padding:22px 18px}
+      .section{padding:20px 16px}
+      .section-head h2{font-size:1.4rem}
+      .cta-primary{font-size:.95rem}
+      .whatsapp-float{width:52px;height:52px;font-size:26px}
+      /* Keep logo elegant on small screens */
+      .logo img{ width:54px; height:54px }
+      .logo span{ font-size:1.25rem }
+    }
   </style>
 </head>
-<body>
-
-  <!-- Close button -->
-  <button class="close-x" aria-label="Close and go back" id="closeQuote">✕</button>
-
-  <form class="card" id="quoteForm" autocomplete="on">
-    <h1>Book a FREE Solar Consultation</h1>
-    <div class="sub">And save up to <span class="big-number">₹78,000</span> with subsidy</div>
-
-    <div class="row">
-      <div>
-        <label for="q_full_name">Full name <span class="req">*</span></label>
-        <input type="text" id="q_full_name" name="full_name" placeholder="Enter Full Name" required>
+<body id="top">
+  <!-- SCROLLING RIBBON -->
+  <header class="ribbon" aria-label="Announcement">
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span class="ticker__item">🌞 SPARKLE SOLAR 🌞 – Power Your Future With Solar Energy at Government Subsidy!</span>
+        <span class="ticker__item">🌞 SPARKLE SOLAR 🌞 – Power Your Future With Solar Energy at Government Subsidy!</span>
+        <span class="ticker__item">🌞 SPARKLE SOLAR 🌞 – Power Your Future With Solar Energy at Government Subsidy!</span>
+        <span class="ticker__item">🌞 SPARKLE SOLAR 🌞 – Power Your Future With Solar Energy at Government Subsidy!</span>
       </div>
+    </div>
+    <div class="ticker__sr">🌞 SPARKLE SOLAR 🌞 – Power Your Future With Solar Energy at Government Subsidy!</div>
+  </header>
 
-      <div>
-        <label for="q_whatsapp">WhatsApp number <span class="req">*</span></label>
-        <input type="tel" id="q_whatsapp" name="whatsapp" inputmode="tel" placeholder="Enter WhatsApp Number" required>
-      </div>
+  <!-- BRAND HEADER (logo left, menu centered) -->
+  <header class="brandbar">
+    <div class="brandwrap">
+      <a class="logo" href="#top" aria-label="Go to top">
+        <img src="images/icon-192.png" alt="Sparkle Solar logo" />
+        <span>SPARKLE SOLAR</span>
+      </a>
+      <nav class="brandnav" id="mainNav">
+        <a href="#services">Services</a>
+        <a href="#process">How It Works</a>
+        <a href="#projects">Projects</a>
+        <a href="#projects">Completed Projects</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="pill">Get Quote</a>
+        <a href="#contact" class="pill">Contact Us</a>
+      </nav>
+      <div></div><!-- spacer -->
+    </div>
+  </header>
 
-      <div>
-        <label for="q_pincode">Pin code <span class="req">*</span></label>
-        <input type="text" id="q_pincode" name="pincode" inputmode="numeric" pattern="[0-9]{6}" placeholder="Enter Pincode" required>
-      </div>
+  <!-- HERO -->
+  <section class="hero-split">
+    <div class="hero-left">
+      <div class="hero-text-block">
+        <h1>Harness the Sun. Cut Bills. Power Your Future.</h1>
+        <p>On-Grid • Off-Grid • Hybrid | Residential • Commercial • Industrial</p>
+        <div class="cta-row">
+          <a class="button white" href="quote.html">⚡ Get a FREE Solar Quote</a>
+          <a class="button" href="https://wa.me/918888856841">💬 Chat on WhatsApp</a>
+        </div>
 
-      <div class="bill-block">
-        <label style="margin:0">What is your average monthly bill? <span class="req">*</span></label>
-        <div class="chips" role="radiogroup" aria-label="Average bill">
-          <input type="radio" name="monthly_bill" id="qb1" value="<1500" required><label for="qb1" class="chip">Less than ₹1500</label>
-          <input type="radio" name="monthly_bill" id="qb2" value="1500-2500"><label for="qb2" class="chip">₹1500 – ₹2500</label>
-          <input type="radio" name="monthly_bill" id="qb3" value="2500-4000"><label for="qb3" class="chip">₹2500 – ₹4000</label>
-          <input type="radio" name="monthly_bill" id="qb4" value="4000-8000"><label for="qb4" class="chip">₹4000 – ₹8000</label>
-          <input type="radio" name="monthly_bill" id="qb5" value=">8000"><label for="qb5" class="chip">More than ₹8000</label>
+        <!-- KPIs -->
+        <div class="kpis" style="margin-top:16px">
+          <div class="kpi-card"><b>500+</b> Installations</div>
+          <div class="kpi-card"><b>₹78k</b> Subsidy Assist</div>
+          <div class="kpi-card"><b>25 yrs</b> Panel Warranty</div>
+          <a class="kpi-card link" href="https://maps.app.goo.gl/Eskw2fFL3FBjqYUs9" target="_blank" rel="noopener">
+            <b>4.9★</b> Customer Rating
+          </a>
+        </div>
+
+        <!-- Inline Calculator -->
+        <div class="calc-inline">
+          <div class="fancy-title">Estimate Your Savings</div>
+          <form class="calc" onsubmit="return false">
+            <div class="row">
+              <input type="number" id="bill" min="500" step="100" placeholder="Average Monthly Bill (₹) e.g., 3000" required>
+              <button type="button" id="calcBtn" class="button">Calculate</button>
+              <a class="button white" href="quote.html" id="prefillQuote">Proceed to Free Quote</a>
+            </div>
+            <div class="calc-out" id="calcOut" aria-live="polite"></div>
+          </form>
         </div>
       </div>
-
-      <label class="agree">
-        <input type="checkbox" id="q_agree" required>
-        <span>I agree to Sparkle Solar's <a href="#">terms of service</a> &amp; <a href="#">privacy policy</a></span>
-      </label>
-
-      <button type="submit" class="cta">Get a FREE Quote</button>
     </div>
-  </form>
+
+    <div class="hero-right">
+      <form class="quote-card" id="heroQuoteForm" autocomplete="on">
+        <h2>Book a FREE Solar Consultation</h2>
+        <p class="muted">And save up to ₹78,000 with subsidy</p>
+        <!-- Make ₹78,000 bold & big -->
+        <p class="muted">And save up to <span class="big-number">₹78,000</span> with subsidy</p>
+
+        <label>Full name *</label>
+        <input type="text" name="full_name" placeholder="Enter Full Name" autocomplete="name" required>
+
+        <label>WhatsApp number *</label>
+        <input type="tel" name="whatsapp" placeholder="Enter WhatsApp Number" autocomplete="tel" pattern="[0-9+\-\s]{10,}" required>
+
+        <label>Pin code *</label>
+        <input type="text" name="pincode" placeholder="Enter Pincode" pattern="[0-9]{6}" autocomplete="postal-code" required>
+
+        <label>Average monthly bill *</label>
+        <div class="chip-group" role="radiogroup" aria-label="Average bill">
+          <input type="radio" name="monthly_bill" id="b1" value="<1500" required><label for="b1" class="chip">Less than ₹1500</label>
+          <input type="radio" name="monthly_bill" id="b2" value="1500-2500"><label for="b2" class="chip">₹1500 – ₹2500</label>
+          <input type="radio" name="monthly_bill" id="b3" value="2500-4000"><label for="b3" class="chip">₹2500 – ₹4000</label>
+          <input type="radio" name="monthly_bill" id="b4" value="4000-8000"><label for="b4" class="chip">₹4000 – ₹8000</label>
+          <input type="radio" name="monthly_bill" id="b5" value=">8000"><label for="b5" class="chip">More than ₹8000</label>
+        </div>
+
+        <label><input type="checkbox" required> I agree to Sparkle Solar’s <a href="#">terms</a> & <a href="#">privacy policy</a></label>
+        <button type="submit" class="cta-primary">Get a FREE Quote</button>
+      </form>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <div class="section-head"><span class="section-accent"></span><h2>Our Services</h2></div>
+      <p style="text-align:center;margin-bottom:10px;">Comprehensive solar solutions for residential, commercial and industrial clients.</p>
+      <div class="service-grid">
+        <div class="service-card">On-Grid Rooftop Systems</div>
+        <div class="service-card">Off-Grid Solar with Battery Backup</div>
+        <div class="service-card">Hybrid Solar Solutions</div>
+        <div class="service-card">Solar Street Lighting</div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="process" class="section">
+      <div class="section-head"><span class="section-accent"></span><h2>How It Works</h2></div>
+      <div class="steps">
+        <div class="number-step"><div class="n">1</div><b>Consult</b><div>Site survey & bill analysis</div></div>
+        <div class="number-step"><div class="n">2</div><b>Design</b><div>System sizing & ROI</div></div>
+        <div class="number-step"><div class="n">3</div><b>Install</b><div>MNRE/Discom paperwork & net-metering</div></div>
+        <div class="number-step"><div class="n">4</div><b>Support</b><div>Monitoring & after-sales</div></div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section" id="testimonials">
+      <div class="section-head"><span class="section-accent"></span><h2>What Our Customers Say</h2></div>
+      <div class="snap">
+        <article class="t">“Seamless installation and clear subsidy support. Bills down ~80%.” <div>— Rohan • 5 kW, Nagpur</div></article>
+        <article class="t">“Hybrid setup works perfectly during outages.” <div>— Anita • 7.5 kW, Hingna</div></article>
+        <article class="t">“Professional team, neat wiring & fast paperwork.” <div>— Imran • 10 kW, Kamptee</div></article>
+        <article class="t">“Transparent pricing and quick approvals. Highly recommend.” <div>— Sneha • 3 kW, Wardha</div></article>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <!-- COMPLETED PROJECTS -->
+    <section id="projects" class="section">
+      <div class="section-head"><span class="section-accent"></span><h2>Our Recent Projects 📸</h2></div>
+      <div class="section-head"><span class="section-accent"></span><h2>Completed Projects 📸</h2></div>
+      <div class="gallery" id="gallery"></div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="section-head"><span class="section-accent"></span><h2>FAQs</h2></div>
+      <details><summary>How does the MNRE rooftop subsidy work?</summary><p>We handle the application, vendor empanelment, inspection and disbursement steps for you.</p></details>
+      <details><summary>Which is best: On-grid, Off-grid or Hybrid?</summary><p>On-grid for lower upfront & net-metering; Hybrid for savings + backup; Off-grid for remote/no net-metering.</p></details>
+      <details><summary>How much roof area is required?</summary><p>Approx 80–100 sq.ft per kW depending on panel efficiency and shade.</p></details>
+      <details><summary>What maintenance is needed?</summary><p>Periodic cleaning and basic checks; we provide support and guidance.</p></details>
+    </section>
+
+    <!-- REACH -->
+    <section id="contact" class="section">
+      <div class="section-head"><span class="section-accent"></span><h2>Reach Us</h2></div>
+      <p>📍 Plot No 44, Jija Mata Nagar 2, Kharbi, Nagpur – 440035</p>
+      <div class="map-container" style="margin-top:16px;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.15)">
+        <iframe
+          src="https://maps.google.com/maps?q=21.114194712584233,79.1585336499152&z=17&output=embed"
+          width="100%" height="400" style="border:0" allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <!-- CONTACT CTA -->
+    <section class="contact">
+      <div class="section-head"><span class="section-accent"></span><h2>📞 Contact Us for a FREE Solar Quote</h2></div>
+      <p><strong>Someshwar Badlu</strong></p>
+      <p>📱 <a href="tel:+918888856841">+91 88888 56841</a> | 📧 <a href="mailto:sparklesolarr@gmail.com">sparklesolarr@gmail.com</a></p>
+      <div style="margin-top:15px">
+        <a class="button white" href="quote.html">⚡ Get a FREE Solar Quote</a>
+        <a class="button" href="https://wa.me/918888856841">💬 WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2025 Sparkle Solar — Save Money. Save Energy. Save Future.</footer>
+
+  <!-- Mobile sticky quick actions -->
+  <div class="mobile-cta" aria-label="Quick Actions">
+    <a href="tel:+918888856841">Call</a>
+    <a href="https://wa.me/918888856841">WhatsApp</a>
+    <a class="primary" href="quote.html">Get Quote</a>
+  </div>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/918888856841" class="whatsapp-float" aria-label="Chat on WhatsApp">💬</a>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <span class="close" id="lbClose" aria-label="Close">✕</span>
+    <button class="close" id="lbClose" aria-label="Close">✕</button>
+    <img src="" alt="Enlarged Project">
+  </div>
+
+  <!-- LocalBusiness + FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "name":"Sparkle Solar",
+    "image":"https://amolstocks2024-hue.github.io/sparkle-solar-site/images/icon-512.png",
+    "telephone":"+91-88888-56841",
+    "email":"sparklesolarr@gmail.com",
+    "address":{"@type":"PostalAddress","streetAddress":"Plot No 44, Jija Mata Nagar 2, Kharbi","addressLocality":"Nagpur","postalCode":"440035","addressCountry":"IN"},
+    "url":"https://amolstocks2024-hue.github.io/sparkle-solar-site/",
+    "areaServed":"Nagpur",
+    "sameAs":["https://wa.me/918888856841"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+   "@context":"https://schema.org",
+   "@type":"FAQPage",
+   "mainEntity":[
+    {"@type":"Question","name":"How does the MNRE rooftop subsidy work?","acceptedAnswer":{"@type":"Answer","text":"We handle the application, vendor empanelment, inspection and disbursement steps for you."}},
+    {"@type":"Question","name":"Which is best: On-grid, Off-grid or Hybrid?","acceptedAnswer":{"@type":"Answer","text":"On-grid for lower upfront & net-metering; Hybrid for savings + backup; Off-grid for remote/no net-metering."}},
+    {"@type":"Question","name":"How much roof area is required?","acceptedAnswer":{"@type":"Answer","text":"Approx 80–100 sq.ft per kW depending on panel efficiency and shade."}},
+    {"@type":"Question","name":"What maintenance is needed?","acceptedAnswer":{"@type":"Answer","text":"Periodic cleaning and basic checks; we provide support and guidance."}}
+   ]
+  }
+  </script>
 
   <script>
-    // Close behavior: prefer history.back(); fallback to homepage
-    document.getElementById('closeQuote').addEventListener('click', ()=>{
-      if (window.history.length > 1) {
-        window.history.back();
-      } else {
-        window.location.href = 'index.html#contact';
-      }
-    });
-
-    // Prefill from index GET params (if present)
-    const params = new URLSearchParams(location.search);
-    if(params.size){
-      const map = {full_name:'q_full_name', whatsapp:'q_whatsapp', pincode:'q_pincode'};
-      for(const [k,id] of Object.entries(map)){
-        const v = params.get(k);
-        if(v){ const el = document.getElementById(id); if(el){ el.value = v; } }
-      }
-      const bill = params.get('monthly_bill');
-      if(bill){
-        const radio = document.querySelector(`input[name="monthly_bill"][value="${bill}"]`);
-        if(radio) radio.checked = true;
-      }
-    }
-
-    // Build WhatsApp message
-    function buildWaMessage(data){
-      const name = data.get('full_name') || '';
-      const phone = data.get('whatsapp') || '';
-      const pin = data.get('pincode') || '';
-      const bill = data.get('monthly_bill') || '';
-      const parts = [
-        'New Solar Inquiry (Website)',
-        `Name: ${name}`,
-        `WhatsApp: ${phone}`,
-        `Pincode: ${pin}`,
-        `Avg Monthly Bill: ${bill}`
-      ];
-      return parts.join('\n');
-    }
-    function sendToWhatsApp(form){
-      const fd = new FormData(form);
-      const msg = buildWaMessage(fd);
-      const url = 'https://wa.me/918888856841?text=' + encodeURIComponent(msg);
-      window.location.href = url;
-    }
-
-    // Submit handler -> WhatsApp
-    const quoteForm = document.getElementById('quoteForm');
-    quoteForm.addEventListener('submit', (e)=>{
+    // 1) WhatsApp form submit (hero)
+    const form = document.getElementById('heroQuoteForm');
+    form?.addEventListener('submit', (e) => {
       e.preventDefault();
-      sendToWhatsApp(quoteForm);
+      const fd = new FormData(form);
+      const msg = `New Solar Inquiry (Website)
+Name: ${fd.get('full_name')}
+WhatsApp: ${fd.get('whatsapp')}
+Pincode: ${fd.get('pincode')}
+Avg Monthly Bill: ${fd.get('monthly_bill')}`;
+      window.location.href = 'https://wa.me/918888856841?text=' + encodeURIComponent(msg);
     });
 
-    // Keyboard accessibility for chips
-    document.querySelectorAll('.chip').forEach(lbl=>{
-      lbl.tabIndex = 0;
-      lbl.addEventListener('keydown',e=>{
-        if(e.key==='Enter' || e.key===' '){
-          e.preventDefault();
-          const id = lbl.getAttribute('for');
-          const input = document.getElementById(id);
-          if(input){ input.checked = true; input.dispatchEvent(new Event('change',{bubbles:true}))}
-        }
+    // 2) Reveal on scroll
+    const revealEls = document.querySelectorAll('.why-point, .service-card, .kpi-card, .number-step');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }});
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+
+    // 3) Projects gallery
+    // 3) Projects gallery (+ improved close behavior)
+    const galleryImages = [
+      "WhatsApp Image 2025-10-24 at 1.08.16 PM.jpeg",
+      "WhatsApp Image 2025-10-24 at 1.08.19 PM.jpeg",
+      "WhatsApp Image 2025-10-24 at 1.08.21 PM.jpeg",
+      "WhatsApp Image 2025-10-24 at 1.08.22 PM.jpeg",
+      "WhatsApp Image 2025-10-24 at 1.08.23 PM.jpeg",
+      "WhatsApp Image 2025-10-24 at 1.08.24 PM.jpeg",
+      "WhatsApp Image 2025-10-24 at 1.08.25 PM.jpeg",
+      "WhatsApp Image 2025-10-24 at 1.08.26 PM.jpeg",
+      "WhatsApp Image 2025-10-24 at 1.08.27 PM.jpeg",
+      "WhatsApp Image 2025-10-24 at 1.08.28 PM.jpeg",
+      "WhatsApp Image 2025-10-24 at 1.08.30 PM.jpeg",
+      "WhatsApp Image 2025-10-24 at 1.08.31 PM.jpeg"
+    ];
+    const gallery = document.getElementById("gallery");
+    const lb = document.getElementById('lightbox');
+    const lbImg = lb.querySelector('img');
+    const lbClose = document.getElementById('lbClose');
+
+    let lastThumb = null; // remember where the user came from
+
+    galleryImages.forEach(name=>{
+      const img=document.createElement('img');
+      img.src=`images/${name}`;
+      img.alt="Sparkle Solar Project";
+      img.loading="lazy";
+      img.width=480; img.height=360;
+      img.tabIndex = 0;
+
+      img.addEventListener('click', ()=>{
+        lastThumb = img;
+        lbImg.src = img.currentSrc || img.src;
+        lb.classList.add('active');
+        lb.setAttribute('aria-hidden','false');
+        lbClose.focus();
+      });
+      img.addEventListener('keydown',(e)=>{
+        if(e.key==='Enter' || e.key===' '){ e.preventDefault(); img.click(); }
+      });
+
+      gallery.appendChild(img);
+    });
+
+    const closeLb = () => { lb.classList.remove('active'); lb.setAttribute('aria-hidden','true'); lbImg.src=''; };
+    const closeLb = () => {
+      lb.classList.remove('active');
+      lb.setAttribute('aria-hidden','true');
+      lbImg.src='';
+      // return focus & view to the thumbnail we came from
+      if (lastThumb) {
+        lastThumb.focus();
+        lastThumb.scrollIntoView({block:'center', behavior:'smooth'});
+      }
+    };
+    lbClose.addEventListener('click', closeLb);
+    lb.addEventListener('click', (e)=>{ if(e.target===lb) closeLb(); });
+    window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLb(); });
+
+    // 4) Savings Calculator (logic with slabs + layout)
+    const DISCOM_RATE = 9.0;     // ₹/kWh
+    const UNITS_PER_KW_PER_MONTH = 150;
+    const COST_PER_KW = 65000;
+
+    const bill = document.getElementById('bill');
+    const out = document.getElementById('calcOut');
+    const btn = document.getElementById('calcBtn');
+    const prefill = document.getElementById('prefillQuote');
+
+    function subsidyForKW(kw){
+      if (kw <= 1) return 30000;
+      if (kw === 2) return 60000;
+      if (kw >= 3) return 78000;  // cap up to 10kW (and beyond per your rule)
+      if (kw >= 3) return 78000;  // cap up to 10kW (per your rule)
+      return 0;
+    }
+
+    function line(label, value){
+      const wrap = document.createElement('div');
+      wrap.className = 'cardline';
+      const k = document.createElement('span'); k.className = 'k'; k.textContent = label;
+      const v = document.createElement('span'); v.className = 'v'; v.textContent = value;
+      wrap.appendChild(k); wrap.appendChild(v);
+      return wrap;
+    }
+
+    function estimate(){
+      const billVal = Math.max(0, +bill.value || 0);
+      const monthlyUnits = billVal / DISCOM_RATE;
+      const sysKW = Math.max(1, Math.ceil(monthlyUnits / UNITS_PER_KW_PER_MONTH));
+      const gross = sysKW * COST_PER_KW;
+      const subsidy = subsidyForKW(sysKW);
+      const net = Math.max(0, gross - subsidy);
+
+      const monthlyGen = sysKW * UNITS_PER_KW_PER_MONTH;
+      const annualGen = monthlyGen * 12;
+      const annualSave = Math.round(annualGen * DISCOM_RATE);
+      const payback = (annualSave>0) ? (net/annualSave).toFixed(1) : '—';
+
+      // Build results
+      const cards = document.createElement('div');
+      cards.className = 'cards';
+      cards.appendChild(line('Recommended System:', `${sysKW} kW`));
+      cards.appendChild(line('Est. Monthly Generation:', `${monthlyGen.toLocaleString()} units`));
+      cards.appendChild(line('Est. Annual Generation:', `${annualGen.toLocaleString()} kWh`));
+      cards.appendChild(line('Approx. Gross Cost:', `₹${gross.toLocaleString()}`));
+      cards.appendChild(line('Subsidy (as per slab):', `₹${subsidy.toLocaleString()}`));
+      cards.appendChild(line('Approx. Net Cost (after subsidy):', `₹${net.toLocaleString()}`));
+      cards.appendChild(line('Est. Yearly Savings:', `₹${annualSave.toLocaleString()}`));
+      cards.appendChild(line('Simple Payback:', `~${payback} years`));
+
+      out.innerHTML = '';
+      out.appendChild(cards);
+
+      // flash-highlight values
+      const values = out.querySelectorAll('.v');
+      values.forEach(v=>{
+        v.classList.remove('flash');
+        void v.offsetWidth; // restart animation
+        v.classList.add('flash');
+      });
+
+      prefill.href = `quote.html?monthly_bill=${encodeURIComponent(billVal)}`;
+    }
+    btn?.addEventListener('click', estimate);
+
+    // 5) Active nav highlight (on scroll + click)
+    const navLinks = [...document.querySelectorAll('#mainNav a')];
+    const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+    const activate = (id) =>
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+
+    const sectionObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ activate(e.target.id); } });
+    }, {threshold:.5});
+    sections.forEach(sec => sectionObserver.observe(sec));
+
+    // Also set active on click (immediate feedback)
+    navLinks.forEach(a=>{
+      a.addEventListener('click', ()=>{
+        navLinks.forEach(x=>x.classList.remove('active'));
+        a.classList.add('active');
       });
     });
+
+    // 6) PWA: register service worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(console.error);
+      });
+    }
   </script>
 </body>
 </html>
