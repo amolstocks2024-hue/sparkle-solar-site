@@ -275,6 +275,17 @@
       .logo img{ width:54px; height:54px }
       .logo span{ font-size:1.25rem }
     }
+
+    /* === ADDED: MOBILE & PWA — keep brand bar strip, hide logo + menu, remove ribbon === */
+    @media (max-width: 768px), (display-mode: standalone) {
+      header.ribbon { display: none !important; }        /* remove the tall announcement ribbon */
+      .brandbar { top: 0; padding-top: 4px; padding-bottom: 4px; } /* move bar to very top */
+      .brandwrap { grid-template-columns: 1fr; }          /* collapse grid so bar is thin */
+      .logo, .brandnav { display: none !important; }      /* hide logo + pill menu on phones/PWA */
+    }
+    @media (max-width: 768px) {
+      .hero-left { min-height: 58vh; }                    /* slightly tighter hero after removing ribbon */
+    }
   </style>
 </head>
 <body id="top">
