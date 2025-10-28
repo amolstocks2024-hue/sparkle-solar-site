@@ -4,14 +4,29 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Get a FREE Solar Quote | Sparkle Solar</title>
+  <meta name="description" content="Book a free solar consultation in Nagpur. We analyze your bill, size your system, and help you claim MNRE subsidy." />
+  <link rel="canonical" href="https://amolstocks2024-hue.github.io/sparkle-solar-site/quote.html" />
+
+  <!-- OG/Twitter -->
+  <meta property="og:title" content="Free Solar Quote — Sparkle Solar"/>
+  <meta property="og:description" content="Quick consultation • Savings estimate • Subsidy assistance"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="images/icon-512.png"/>
+  <meta property="og:url" content="https://amolstocks2024-hue.github.io/sparkle-solar-site/quote.html"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+
   <style>
     :root{
-      --bg:#0b122b;           /* deep navy backdrop like your screenshot */
+      --bg:#0b122b;
       --card:#ffffff;
       --text:#1e2330;
       --muted:#6b7280;
-      --accent:#7c3aed;       /* purple focus ring */
+      --accent:#7c3aed;
     }
     *{box-sizing:border-box}
     body{
@@ -20,8 +35,7 @@
     }
     .card{
       width:100%; max-width:680px; background:var(--card); border-radius:22px;
-      padding:24px; box-shadow:0 20px 60px rgba(0,0,0,.30);
-      border:2px solid #eef0f4;
+      padding:24px; box-shadow:0 20px 60px rgba(0,0,0,.30); border:2px solid #eef0f4;
     }
     h1{ margin:0 0 4px; font-size:1.8rem; color:var(--text) }
     .sub{ color:var(--muted); margin-bottom:14px }
@@ -37,9 +51,6 @@
 
     .row{ display:grid; grid-template-columns: 1fr; gap:12px }
     .bill-block{ margin-top:8px }
-    .bill-title{ display:flex; align-items:center; gap:8px }
-    .bill-title .info svg{ vertical-align:middle }
-
     .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px }
     .chips input{ display:none }
     .chip{
@@ -47,9 +58,7 @@
       border:1.6px solid #e5e7eb; background:#fff; color:#1f2937; font-weight:700; font-size:.95rem;
       transition: all .15s ease;
     }
-    .chips input:checked + .chip, .chip:hover{
-      border-color:var(--accent); box-shadow:0 0 0 3px rgba(124,58,237,.12)
-    }
+    .chips input:checked + .chip, .chip:hover{ border-color:var(--accent); box-shadow:0 0 0 3px rgba(124,58,237,.12) }
 
     .agree{ display:flex; align-items:flex-start; gap:10px; margin-top:14px; color:#6b7280 }
     .agree input{ margin-top:3px }
@@ -62,9 +71,7 @@
     }
     .cta:hover{ transform:translateY(-1px); box-shadow:0 10px 18px rgba(11,18,43,.25) }
 
-    @media (min-width:720px){
-      .row-2{ grid-template-columns:1fr 1fr }
-    }
+    @media (min-width:720px){ .row-2{ grid-template-columns:1fr 1fr } }
   </style>
 </head>
 <body>
@@ -76,27 +83,21 @@
     <div class="row">
       <div>
         <label for="q_full_name">Full name <span class="req">*</span></label>
-        <input type="text" id="q_full_name" name="full_name" placeholder="Enter Full Name" required>
+        <input type="text" id="q_full_name" name="full_name" placeholder="Enter Full Name" autocomplete="name" required>
       </div>
 
       <div>
         <label for="q_whatsapp">WhatsApp number <span class="req">*</span></label>
-        <input type="tel" id="q_whatsapp" name="whatsapp" inputmode="tel" placeholder="Enter WhatsApp Number" required>
+        <input type="tel" id="q_whatsapp" name="whatsapp" inputmode="tel" placeholder="Enter WhatsApp Number" autocomplete="tel" pattern="[0-9+\-\s]{10,}" required>
       </div>
 
       <div>
         <label for="q_pincode">Pin code <span class="req">*</span></label>
-        <input type="text" id="q_pincode" name="pincode" inputmode="numeric" pattern="[0-9]{6}" placeholder="Enter Pincode" required>
+        <input type="text" id="q_pincode" name="pincode" inputmode="numeric" pattern="[0-9]{6}" placeholder="Enter Pincode" autocomplete="postal-code" required>
       </div>
 
       <div class="bill-block">
-        <div class="bill-title">
-          <label style="margin:0">What is your average monthly bill? <span class="req">*</span></label>
-          <span class="info" aria-label="Info" title="Approximate your recent electricity bill.">
-            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="#777" stroke-width="1.6"/><circle cx="12" cy="7.5" r="1.2" fill="#777"/><path d="M12 10.5v6" stroke="#777" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-        </div>
-
+        <label style="margin:0">What is your average monthly bill? <span class="req">*</span></label>
         <div class="chips" role="radiogroup" aria-label="Average bill">
           <input type="radio" name="monthly_bill" id="qb1" value="<1500" required><label for="qb1" class="chip">Less than ₹1500</label>
           <input type="radio" name="monthly_bill" id="qb2" value="1500-2500"><label for="qb2" class="chip">₹1500 – ₹2500</label>
@@ -108,7 +109,7 @@
 
       <label class="agree">
         <input type="checkbox" id="q_agree" required>
-        <span>I agree to SolarSquare's <a href="#">terms of service</a> &amp; <a href="#">privacy policy</a></span>
+        <span>I agree to Sparkle Solar's <a href="#">terms of service</a> &amp; <a href="#">privacy policy</a></span>
       </label>
 
       <button type="submit" class="cta">Get a FREE Quote</button>
