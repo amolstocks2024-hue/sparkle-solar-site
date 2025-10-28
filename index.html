@@ -228,8 +228,6 @@
     .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;z-index:999}
     .lightbox.active{opacity:1;pointer-events:auto}
     .lightbox img{max-width:90%;max-height:85%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
-    .lightbox .close{position:absolute;top:20px;right:28px;font-size:34px;color:#fff;cursor:pointer;font-weight:900;line-height:1}
-    .lightbox .close:hover{color:var(--indigo)}
     /* Close button inside lightbox */
     .lightbox .close{
       position:absolute;top:20px;right:28px;font-size:34px;color:#fff;cursor:pointer;font-weight:900;line-height:1;
@@ -244,7 +242,6 @@
     .snap .t div{margin-top:8px;color:#6b7280;font-weight:700}
     .snap::-webkit-scrollbar{display:none}
 
-    /* Contact */
     /* Contact section card */
     .contact{width:60%;margin:50px auto;text-align:center;background:#fff;border:3px solid #eef2ff;border-radius:20px;padding:40px 25px;box-shadow:0 10px 28px rgba(99,102,241,.12)}
     .contact a{color:#1f2937;text-decoration:none;font-weight:700}
@@ -304,11 +301,9 @@
       <nav class="brandnav" id="mainNav">
         <a href="#services">Services</a>
         <a href="#process">How It Works</a>
-        <a href="#projects">Projects</a>
         <a href="#projects">Completed Projects</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#faq">FAQ</a>
-        <a href="#contact" class="pill">Get Quote</a>
         <a href="#contact" class="pill">Contact Us</a>
       </nav>
       <div></div><!-- spacer -->
@@ -354,7 +349,6 @@
     <div class="hero-right">
       <form class="quote-card" id="heroQuoteForm" autocomplete="on">
         <h2>Book a FREE Solar Consultation</h2>
-        <p class="muted">And save up to ₹78,000 with subsidy</p>
         <!-- Make ₹78,000 bold & big -->
         <p class="muted">And save up to <span class="big-number">₹78,000</span> with subsidy</p>
 
@@ -417,10 +411,8 @@
       </div>
     </section>
 
-    <!-- PROJECTS -->
     <!-- COMPLETED PROJECTS -->
     <section id="projects" class="section">
-      <div class="section-head"><span class="section-accent"></span><h2>Our Recent Projects 📸</h2></div>
       <div class="section-head"><span class="section-accent"></span><h2>Completed Projects 📸</h2></div>
       <div class="gallery" id="gallery"></div>
     </section>
@@ -446,7 +438,6 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
     <!-- CONTACT CTA -->
     <section class="contact">
       <div class="section-head"><span class="section-accent"></span><h2>📞 Contact Us for a FREE Solar Quote</h2></div>
@@ -473,7 +464,6 @@
 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
-    <span class="close" id="lbClose" aria-label="Close">✕</span>
     <button class="close" id="lbClose" aria-label="Close">✕</button>
     <img src="" alt="Enlarged Project">
   </div>
@@ -527,7 +517,6 @@ Avg Monthly Bill: ${fd.get('monthly_bill')}`;
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
 
-    // 3) Projects gallery
     // 3) Projects gallery (+ improved close behavior)
     const galleryImages = [
       "WhatsApp Image 2025-10-24 at 1.08.16 PM.jpeg",
@@ -572,7 +561,6 @@ Avg Monthly Bill: ${fd.get('monthly_bill')}`;
       gallery.appendChild(img);
     });
 
-    const closeLb = () => { lb.classList.remove('active'); lb.setAttribute('aria-hidden','true'); lbImg.src=''; };
     const closeLb = () => {
       lb.classList.remove('active');
       lb.setAttribute('aria-hidden','true');
@@ -600,7 +588,6 @@ Avg Monthly Bill: ${fd.get('monthly_bill')}`;
     function subsidyForKW(kw){
       if (kw <= 1) return 30000;
       if (kw === 2) return 60000;
-      if (kw >= 3) return 78000;  // cap up to 10kW (and beyond per your rule)
       if (kw >= 3) return 78000;  // cap up to 10kW (per your rule)
       return 0;
     }
@@ -627,7 +614,6 @@ Avg Monthly Bill: ${fd.get('monthly_bill')}`;
       const annualSave = Math.round(annualGen * DISCOM_RATE);
       const payback = (annualSave>0) ? (net/annualSave).toFixed(1) : '—';
 
-      // Build results
       const cards = document.createElement('div');
       cards.className = 'cards';
       cards.appendChild(line('Recommended System:', `${sysKW} kW`));
@@ -642,7 +628,6 @@ Avg Monthly Bill: ${fd.get('monthly_bill')}`;
       out.innerHTML = '';
       out.appendChild(cards);
 
-      // flash-highlight values
       const values = out.querySelectorAll('.v');
       values.forEach(v=>{
         v.classList.remove('flash');
@@ -666,7 +651,6 @@ Avg Monthly Bill: ${fd.get('monthly_bill')}`;
     }, {threshold:.5});
     sections.forEach(sec => sectionObserver.observe(sec));
 
-    // Also set active on click (immediate feedback)
     navLinks.forEach(a=>{
       a.addEventListener('click', ()=>{
         navLinks.forEach(x=>x.classList.remove('active'));
